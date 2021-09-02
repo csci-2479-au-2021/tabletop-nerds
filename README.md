@@ -6,3 +6,6 @@ A silly recreation of a certain board game website.
 2. run code
 3. do stuff
 4. profit
+
+## Credits
+oldskoolfan
