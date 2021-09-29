@@ -19,7 +19,10 @@ docker run --rm \
 laravelsail/php80-composer:latest \
 composer install --ignore-platform-reqs
 ```
-
+If you want to type sail instead of vendor/bin/sail, add an alias to your ~/.bashrc file like this:
+```
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+```
 4. copy the `.env.example` file to a new file named `.env`
 5. in your .env file, change the DB_HOST value from 127.0.0.1 to mysql
 6. in your .env file, change the DB_USERNAME value to sail
