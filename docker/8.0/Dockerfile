@@ -41,6 +41,20 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+ARG XDEBUG
+ARG XDEBUG_PORT
+RUN if [ "${XDEBUG}" = 'true' ] ; then \
+    echo "[XDebug]" > /etc/php/8.0/cli/php.ini \
+    && echo "xdebug.mode = debug" >> /etc/php/8.0/cli/php.ini \
+    && echo "xdebug.discover_client_host = true" >> /etc/php/8.0/cli/php.ini \
+    && echo "xdebug.start_with_request = true" >> /etc/php/8.0/cli/php.ini \
+    && echo "xdebug.client_host = host.docker.internal" >> /etc/php/8.0/cli/php.ini \
+    && echo "xdebug.client_port = ${XDEBUG_PORT}" >> /etc/php/8.0/cli/php.ini \
+    && apt-get -y autoremove \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ;\
+fi;
+
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.0
 
 RUN groupadd --force -g $WWWGROUP sail
