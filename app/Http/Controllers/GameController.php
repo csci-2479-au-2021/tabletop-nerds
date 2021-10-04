@@ -8,7 +8,7 @@ class GameController extends Controller
 {
     public function listGames()
     {
-        $games = ['Super Mario', 'Castlevania', 'Metroid'];
+        $games = ['Donkey Kong', 'Super Mario 2', 'Tetris'];
 
         return view('games', ['games' => $games]);
     }
