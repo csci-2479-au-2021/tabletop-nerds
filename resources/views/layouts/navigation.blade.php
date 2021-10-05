@@ -22,6 +22,11 @@
                         {{ __('Games') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('wishlist')" :active="request()->routeIs('wishlist')">
+                        {{ __('WishList') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -81,6 +86,11 @@
        
             <x-responsive-nav-link :href="route('games')" :active="request()->routeIs('games')">
                 {{ __('Games') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('wishlist')" :active="request()->routeIs('wishlist')">
+                {{ __('Wishlist') }}
             </x-responsive-nav-link>
         </div>
 

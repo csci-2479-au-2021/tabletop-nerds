@@ -24,4 +24,8 @@ Route::get('/profile', function () {
 
 Route::get('/games', [GameController::class, 'listGames'])->name('games');
 
+Route::get('/wishlist', function () {
+    return view('wishlist');
+})->name('wishlist');
+
 require __DIR__.'/auth.php';
