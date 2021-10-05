@@ -22,6 +22,6 @@ Route::get('/profile', function () {
     return view('profile');
 })->middleware(['auth'])->name('profile');
 
-Route::get('/games', [GameController::class, 'listGames']);
+Route::get('/games', [GameController::class, 'listGames'])->name('games');
 
 require __DIR__.'/auth.php';
