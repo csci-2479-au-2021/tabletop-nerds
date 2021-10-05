@@ -40,6 +40,12 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
+
+                        <x-dropdown-link :href="route('wishlist')" 
+                                :active="request()->routeIs('wishlist')">
+                            {{ __('Wishlist') }}
+                        </x-dropdown-link>
+                        
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
