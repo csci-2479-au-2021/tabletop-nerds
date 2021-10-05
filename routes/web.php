@@ -25,4 +25,8 @@ Route::get('/phpinfo', function () {
     return phpinfo();
 });
 
+Route::get('/wishlist', function () {
+    return view('wishlist');
+})->name('wishlist');
+
 require __DIR__.'/auth.php';
