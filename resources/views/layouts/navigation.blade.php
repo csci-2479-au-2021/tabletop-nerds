@@ -34,14 +34,15 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
 
-                            <x-dropdown-link :href="route('profile')" 
+                    <x-dropdown-link :href="route('profile')" 
                                     :active="request()->routeIs('profile')">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
+
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
 
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
