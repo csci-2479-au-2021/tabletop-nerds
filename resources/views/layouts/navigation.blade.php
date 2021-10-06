@@ -35,9 +35,7 @@
 
                     <x-slot name="content">
 
-                        <x-dropdown-link :href="route('profile')"
-                                onclick="event.preventDefault();
-                                    this.closest('form').submit();">
+                        <x-dropdown-link :href="route('profile')">
                                 {{ __('Account Profile') }}
                         </x-dropdown-link>
                         
