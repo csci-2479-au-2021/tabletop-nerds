@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
-                        {{ __('Account Profile') }}
+                        {{ __('Home') }}
                     </x-nav-link>
                 </div>
                 
@@ -25,6 +25,15 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('wishlist')" :active="request()->routeIs('wishlist')">
                         {{ __('WishList') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link>
+                        <form action="/search-results" method="get">
+                            <input type="text" name="search" placeholder="Search.." required>
+                            <button type="sumbit">Submit</button>
+                        </form>
                     </x-nav-link>
                 </div>
             </div>
@@ -47,7 +56,7 @@
                     <x-slot name="content">
 
                         <x-dropdown-link :href="route('profile')">
-                                {{ __('Account Profile') }}
+                                {{ __('Home') }}
                         </x-dropdown-link>
                         
                         <!-- Authentication -->
@@ -87,7 +96,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
-                {{ __('Account Profile') }}
+                {{ __('Home') }}
             </x-responsive-nav-link>
        
             <x-responsive-nav-link :href="route('games')" :active="request()->routeIs('games')">
