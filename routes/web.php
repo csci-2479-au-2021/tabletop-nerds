@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,10 +27,12 @@ Route::get('/profile', function () {
     return view('profile');
 })->middleware(['auth'])->name('profile');
 
-Route::get('/games', [GameController::class, 'listGames'])->name('games');
-
 Route::get('/wishlist', function () {
     return view('wishlist');
-})->name('wishlist');
+})->middleware(['auth'])->name('wishlist');
+
+Route::get('/games', [GameController::class, 'listGames'])->name('games');
+
+Route::get('/search-results',[SearchController::class, 'search']);
 
 require __DIR__.'/auth.php';
