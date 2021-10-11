@@ -16,6 +16,15 @@
                         {{ __('Games') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link>
+                        <form action="/search-results" method="get">
+                            <input type="text" name="search" placeholder="Search.." required>
+                            <button type="sumbit">Submit</button>
+                        </form>
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -72,7 +81,7 @@
                 </x-dropdown>
             </div>
 
-            <!-- Hamburger -->
+            <!-- Hamburger Mobile View-->
             <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -91,6 +100,13 @@
             <x-responsive-nav-link :href="route('games')" :active="request()->routeIs('games')">
                 {{ __('Games') }}
             </x-responsive-nav-link>
+            
+            <x-nav-link>
+                <form action="/search-results" method="get">
+                    <input type="text" name="search" placeholder="Search.." required>
+                    <button type="sumbit">Submit</button>
+                </form>
+            </x-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
