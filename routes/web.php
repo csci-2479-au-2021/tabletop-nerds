@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,16 +16,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/index', function () {
+    return view('index');
+})->middleware(['auth'])->name('index');
 
-Route::get('/phpinfo', function () {
-    return phpinfo();
-});
+Route::get('/profile', function () {
+    return view('profile');
+})->middleware(['auth'])->name('profile');
+
+Route::get('/wishlist', function () {
+    return view('wishlist');
+})->middleware(['auth'])->name('wishlist');
+
+Route::get('/games', [GameController::class, 'listGames'])->name('games');
+
+Route::get('/search-results',[SearchController::class, 'search']);
 
 Route::get('/wishlist', function () {
     return view('wishlist');
