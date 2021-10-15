@@ -16,11 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
-
-Route::get('/index', function () {
-    return view('index');
-})->middleware(['auth'])->name('index');
+})->name('index');
 
 Route::get('/profile', function () {
     return view('profile');
@@ -30,6 +26,6 @@ Route::get('/games', [GameController::class, 'listGames'])->name('games');
 
 Route::get('/wishlist', function () {
     return view('wishlist');
-})->name('wishlist');
+})->middleware(['auth'])->name('wishlist');
 
 require __DIR__.'/auth.php';
