@@ -60,11 +60,6 @@
                                 {{ __('Account Profile') }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('wishlist')" 
-                                :active="request()->routeIs('wishlist')">
-                            {{ __('Wishlist') }}
-                        </x-dropdown-link>
-                        
                         <!-- Authentication -->
 
                         <x-dropdown-link :href="route('wishlist')" 

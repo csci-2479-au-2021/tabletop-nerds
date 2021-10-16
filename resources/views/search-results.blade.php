@@ -10,22 +10,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-<<<<<<< HEAD:resources/views/dashboard.blade.php
-                    You're logged in! 
-
-                    
-=======
                     <h3 class="text-red-600 text-5xl font-bold">Search Results: </h3>
 
 
->>>>>>> 045a0963646985e78e89621b4ac0a8cb740ba930:resources/views/search-results.blade.php
                 </div>
             </div>
         </div>
     </div>
 
-<<<<<<< HEAD:resources/views/dashboard.blade.php
 </x-app-layout>
-=======
-</x-app-layout>
->>>>>>> 045a0963646985e78e89621b4ac0a8cb740ba930:resources/views/search-results.blade.php
