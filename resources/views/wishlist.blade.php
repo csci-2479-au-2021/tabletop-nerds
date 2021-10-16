@@ -4,8 +4,7 @@
             {{ __('Wishlist') }}
         </h2>
     </x-slot>
-
-
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -13,15 +12,21 @@
                     <h3 class="text-green-600 text-5xl font-bold">Your Wishlist </h3>
                     <table class="table-fixed border-collapse border-green-800">
                         <tr>
-                            <th class="w-1/3 border border-green-600">Game Image</th> 
-                            <th class="w-1/2 border border-green-600">Game Title</th> 
-                            <th class="w-1/3 border border-green-600">Price</th> 
+                            <th class="w-1/4 border border-green-600">Game Image</th> 
+                            <th class="w-1/4 border border-green-600">Game Title</th> 
+                            <th class="w-1/4 border border-green-600">Game Description</th>
+                            <th class="w-1/4 border border-green-600">Price</th> 
                         </tr>
+                        
+                        @foreach($wishlist as $game) 
                         <tr>
-                            <td class="content-center border border-green-600"><img src="{{url('/images/monopoly.jpg')}}" alt="Monopoly"> </td> 
-                            <td class="text-center  border border-green-600">Monopoly </td>
-                            <td class="text-center border border-green-600"> $29.99</td> 
-                        </tr>
+                            <td class="content-center border border-green-600"><img src="{{$game->image}}"  alt="Monopoly"> </td> 
+                            <td class="text-center  border border-green-600">{{$game->name}}</td>
+                            <td class="text-center border border-green-600">{{$game->description}}</td>
+                            <td class="text-center border border-green-600">{{$game->price}}</td>  
+                        </tr>  
+                        @endforeach
+                        
                     </table>    
 
                     
