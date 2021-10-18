@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Classes\WishlistGame;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class WishlistController extends Controller
 {
@@ -13,6 +15,20 @@ class WishlistController extends Controller
         $wishlist = [$monopoly,$sorry];    
         return view('wishlist', ['wishlist'=>$wishlist]);
         
+    }
+
+    public function showWishlist($userId = null) {
+        $user = null;
+
+        if($userId != null) {
+            $user = User::find($userId);
+        } else {
+            $user = User::find(Auth::user()->id);
+        }
+
+        return view('wishlist', [
+            'user' => $user
+        ]);
     }
 
     /**

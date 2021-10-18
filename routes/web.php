@@ -4,6 +4,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\UserController;
+use App\Services;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,22 +22,15 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Route::get('/profile', function () {
-    return view('profile');
-})->middleware(['auth'])->name('profile');
-
-Route::get('/wishlist', [WishlistController::class, 'viewWishlist'])->middleware(['auth'])->name('wishlist');
-
 Route::get('/games', [GameController::class, 'listGames'])->name('games');
 
 Route::get('/search-results',[SearchController::class, 'search']);
 
-// Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/user.profile',[UserController::class, 'showProfile']
+)->middleware(['auth'])->name('profile');
 
-// Route::get('user/{id}', function ($id) {
-//     return 'User '.$id;
-//     return view('profile');
-// })->name('profile');
+Route::get('/user.wishlist',[WishlistController::class, 'viewWishlist']
+)->middleware(['auth'])->name('wishlist');
 
 Route::get('/game/{id}', function ($id) {
     return view('game');
