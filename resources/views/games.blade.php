@@ -30,7 +30,6 @@
                         <tr>
                             <th class="w-1/4 border border-green-600">Game Image</th> 
                             <th class="w-1/4 border border-green-600">Game Title</th> 
-                            <th class="w-1/4 border border-green-600">Game Description</th>
                             <th class="w-1/4 border border-green-600">View Game</th> 
                         </tr>
                         
@@ -38,12 +37,9 @@
                         <tr>
                             <td class="content-center border border-green-600"><img src="{{$game->image}}"> </td> 
                             <td class="text-center  border border-green-600">{{$game->name}}</td>
-                            <td class="text-center border border-green-600">{{$game->description}}</td>
-                            
                             <td class="text-center border border-green-600">
-                            <x-nav-link :href="route('viewGame','$key->id')">
-                            {{ __('ViewGame') }}
-                            </x-nav-link>
+                            <a href="{{ route('gameView', ['id' => $key]) }}">View Game Details</a>    
+                            
                             </td>
                                                       
                         </tr>  

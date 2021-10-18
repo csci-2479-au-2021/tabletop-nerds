@@ -18,11 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
-
-Route::get('/index', function () {
-    return view('index');
-})->middleware(['auth'])->name('index');
+})->name('index');
 
 Route::get('/profile', function () {
     return view('profile');
@@ -32,7 +28,7 @@ Route::get('/wishlist', [WishlistController::class, 'viewWishlist'])->middleware
 
 Route::get('/games', [GameController::class, 'listGames'])->name('games');
 
-Route::get('/games/{id}', [GameController::class, 'viewGame'])->name('viewGame');
+Route::get('/games/{id}', [GameController::class, 'gameView'])->name('gameView');
 
 Route::get('/search-results',[SearchController::class, 'search']);
 
