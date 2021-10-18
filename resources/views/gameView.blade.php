@@ -1,24 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Games') }}
+            {{ __('$id.name') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    My Games:
-                    <ul>
-                        @foreach($games as $game)
-                            <li>{{$game}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
 
     <div class="py-12">
@@ -41,9 +28,7 @@
                             <td class="text-center border border-green-600">{{$game->description}}</td>
                             
                             <td class="text-center border border-green-600">
-                            <x-nav-link :href="route('viewGame','$key->id')">
-                            {{ __('ViewGame') }}
-                            </x-nav-link>
+                                {{Form::open(array('')) $key}}
                             </td>
                                                       
                         </tr>  
