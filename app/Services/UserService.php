@@ -2,10 +2,16 @@
 
 namespace App\Services;
 
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use App\Repositories\UserRepository; 
 
-class UserService
+class UserService 
 {
-    
+    public function __construct(
+       private UserRepository $userRepository
+    ) {}
+
+    public function getWishlistByUserId(): array
+    {
+        return $this->userRepository->getWishlistByUserId();
+    }
 }
