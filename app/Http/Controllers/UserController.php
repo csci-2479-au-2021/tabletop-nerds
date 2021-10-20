@@ -16,17 +16,12 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function showProfile($userId = null) {
-        $user = null;
+    public function userInfo()
+    {
+        $userId = Auth::user()->id;
+        $userName = Auth::user()->name;
+        $userEmail = Auth::user()->email;
 
-        if($userId != null) {
-            $user = User::find($userId);
-        } else {
-            $user = User::find(Auth::user()->id);
-        }
-
-        return view('profile', [
-            'user' => $user
-        ]);
+        return view('profile', compact('userId', 'userName', 'userEmail'));
     }
 }
