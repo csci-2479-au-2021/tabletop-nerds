@@ -9,8 +9,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div style="text-align:center;"class="p-6 bg-white border-b border-gray-200">
-                    User ID: {{ auth()->user()->id }}</br>
-                    Name: {{ auth()->user()->name }}
+                    User ID: {{ $userId }}</br>
+                    Name: {{ $userName }}</br>
+                    Email: {{ $userEmail }}
 
                 </div>
             </div>
