@@ -5,9 +5,6 @@
         </h2>
     </x-slot>
 
-   
-
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -17,21 +14,12 @@
                             <th class="w-1/2 border border-green-600">Game Image</th> 
                             <th class="w-1/2 border border-green-600">Game Description</th>
                         </tr>
-                        
-                        
-                       
-
-                       
                         <tr>
                             <td class="content-center border border-green-600"><img src="{{$game->image}}"> </td> 
                             <td class="text-center border border-green-600">{{$game->description}}</td>                   
                         </tr>  
-                       
-                        
                     </table>  
-                    </table>    
-
-                    
+                    </table> 
                 </div>
             </div>
         </div>

@@ -1,24 +1,31 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Classes\WishlistGame;
-use App\Classes\Game;
+// use App\Classes\WishlistGame;
+// use App\Classes\Game;
+use App\Models\Game;
+use App\Services\GameService;
 
 use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
-    public function listGames()
-    {
-        $games = ['Donkey Kong', 'Super Mario 2', 'Tetris'];
-        
 
-        $monopoly = new Game("Monopoly","Best Game Ever","http://localhost/images/monopoly.jpg");
-        $sorry = new Game("Sorry","2nd Best Game Ever","http://localhost/images/sorry.jpg"); 
-        $boardGames = [$monopoly, $sorry];
-        return view('games', compact('games','boardGames'));
+    public function __construct(
+        private GameService $gameService
+        ) { }
+
+    public function index()
+    {
+        $games = $this->gameService->getGames();
+
+        return view('gamelist', [
+            'games' => $games,
+        ]);
     }
 
+    // this function needs updated to find id from game DB + disp individual game details
+    
     public function gameView($id){
         $monopoly = new Game("Monopoly",
         "Monopoly is a game with a bad reputation that it doesn't deserve. If players read the rules and played this game utilizing auctions, 
@@ -28,7 +35,7 @@ class GameController extends Controller
         "I actually don't know anything about this game. The image was easy to find though. LOL, Sorry.",
         "http://localhost/images/sorry.jpg"); 
         $gamelist = [$monopoly, $sorry];   
-        $game= $gamelist[$id];
+        $game = $gamelist[$id];
         return view('gameView', compact('game')); 
     }
 }
