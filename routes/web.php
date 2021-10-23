@@ -29,7 +29,7 @@ Route::get('/games', [GameController::class, 'listGames'])->name('games');
 
 Route::get('/games/{id}', [GameController::class, 'gameView'])->name('gameView');
 
-Route::get('/search-results',[SearchController::class, 'search']);
+Route::get('/search-results', [SearchController::class, 'gamehunt']);
 
 Route::get('/game/{id}', function ($id) {
     return view('game');
