@@ -12,7 +12,7 @@
                     My Games:
                     <ul>
                         @foreach($games as $game)
-                            <li>{{$game}}</li>
+                            <li>{{$game->name}} - {{$game->gameType->name}}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
                             <th class="w-1/4 border border-green-600">View Game</th> 
                         </tr>
                         
-                        @foreach($boardGames as $key=>$game) 
+                        @foreach($games as $key=>$game) 
                         <tr>
                             <td class="content-center border border-green-600"><img src="{{$game->image}}"> </td> 
                             <td class="text-center  border border-green-600">{{$game->name}}</td>
