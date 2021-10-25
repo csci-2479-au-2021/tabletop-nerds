@@ -19,7 +19,7 @@ class GameController extends Controller
     {
         $games = $this->gameService->getGames();
 
-        return view('gamelist', [
+        return view('games', [
             'games' => $games,
         ]);
     }
