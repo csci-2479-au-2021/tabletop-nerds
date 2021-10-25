@@ -4,6 +4,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\HomeController;
+use App\Repositories\GameRepository;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,7 @@ Route::get('/wishlist', [WishlistController::class, 'viewWishlist'])->middleware
 
 Route::get('/gameView', [GameController::class, 'gameView'])->name('gameView');
 
-Route::get('/search-results',[SearchController::class, 'search']);
+Route::get('/search-results', [GameRepository::class, 'searchGamesByTitle']);
 
 Route::get('/games', [GameController::class, 'index'])->name('games');
 
