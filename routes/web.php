@@ -5,6 +5,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Repositories\GameRepository;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,14 +25,10 @@ Route::get('/profile', [UserController::class, 'userInfo'])->middleware(['auth']
 
 Route::get('/wishlist', [WishlistController::class, 'viewWishlist'])->middleware(['auth'])->name('wishlist');
 
-Route::get('/games', [GameController::class, 'listGames'])->name('games');
+Route::get('/gameView', [GameController::class, 'gameView'])->name('gameView');
 
-Route::get('/games/{id}', [GameController::class, 'gameView'])->name('gameView');
+Route::get('/search-results', [GameRepository::class, 'searchGamesByTitle']);
 
-Route::get('/search-results',[SearchController::class, 'search']);
-
-Route::get('/game/{id}', function ($id) {
-    return view('game');
-})->name('game');
+Route::get('/games', [GameController::class, 'index'])->name('games');
 
 require __DIR__.'/auth.php';
