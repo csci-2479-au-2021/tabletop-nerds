@@ -14,13 +14,13 @@ class GameRepository
 
     public function getGames(): Collection
     {
-        return Game::orderBy('name')->get();
+        return Game::orderBy('title')->get();
     }
 
     public function searchGamesByTitle(Request $request)
     {
         $key = trim($request->get('search'));
-        $findgames = DB::table('games')->where('name', 'like', "%{$key}%")->get();
+        $findgames = DB::table('games')->where('title', 'like', "%{$key}%")->get();
         return view('search-results', ['key' => $key, 'games' => $findgames]);
     }
 }

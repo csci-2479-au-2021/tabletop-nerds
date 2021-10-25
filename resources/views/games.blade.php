@@ -12,7 +12,7 @@
                     My Games:
                     <ul>
                         @foreach($games as $game)
-                            <li>{{$game->name}} - {{$game->gameType->name}}</li>
+                            <li>{{$game->title}} - {{$game->gameType->title}}</li>
                         @endforeach
                     </ul>
                 </div>
@@ -36,7 +36,7 @@
                         @foreach($games as $key=>$game) 
                         <tr>
                             <td class="content-center border border-green-600"><img src="{{$game->image}}"> </td> 
-                            <td class="text-center  border border-green-600">{{$game->name}}</td>
+                            <td class="text-center  border border-green-600">{{$game->title}}</td>
                             <td class="text-center border border-green-600">
                             <a href="{{ route('gameView', ['id' => $key]) }}">View Game Details</a>    
                             

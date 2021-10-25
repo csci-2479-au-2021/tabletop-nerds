@@ -15,7 +15,7 @@ class GameTypeSeeder extends Seeder
     public function run()
     {
         $gameFactory = GameType::factory();
-        $gameFactory->create(['name' => 'Board']);
-        $gameFactory->create(['name' => 'Video']);
+        $gameFactory->create(['title' => 'Board']);
+        $gameFactory->create(['title' => 'Video']);
     }
 }

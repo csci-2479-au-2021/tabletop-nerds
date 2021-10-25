@@ -16,13 +16,13 @@ class GameSeeder extends Seeder
      */
     public function run()
     {
-        $boardType = GameType::where('name', 'board')->first();
-        $videoType = GameType::where('name', 'video')->first();
+        $boardType = GameType::where('title', 'board')->first();
+        $videoType = GameType::where('title', 'video')->first();
 
         $gameFactory = Game::factory();
-        $sorry = $gameFactory->make(['name' => 'Sorry']);
-        $tetris = $gameFactory->make(['name' => 'Tetris']);
-        $monopoly = $gameFactory->make(['name' => 'Monopoly']);
+        $sorry = $gameFactory->make(['title' => 'Sorry']);
+        $tetris = $gameFactory->make(['title' => 'Tetris']);
+        $monopoly = $gameFactory->make(['title' => 'Monopoly']);
 
         $boardType->games()->saveMany([$sorry, $monopoly]);
         $videoType->games()->save($tetris);

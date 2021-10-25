@@ -13,7 +13,7 @@
                     <h3 class="text-red-600 text-2xl font-bold">Possible matches: </h3></br>
                         @if($games->isNotEmpty())
                         @foreach ($games as $game)
-                        <a href="{{ route('gameView', ['name' => $key]) }}">{{ $game->name }}</a>
+                        <a href="{{ route('gameView', ['title' => $key]) }}">{{ $game->title }}</a>
                 </div>
                     @endforeach
                     @else 
