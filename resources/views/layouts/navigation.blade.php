@@ -16,18 +16,12 @@
                         {{ __('Games') }}
                     </x-nav-link>
                 </div>
-
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link>
                         <form action="/search-results" method="get">
                             <input type="text" name="search" placeholder="Search.." required>
                             <button type="sumbit">Submit</button>
                         </form>
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('wishlist')" :active="request()->routeIs('wishlist')">
-                        {{ __('WishList') }}
                     </x-nav-link>
                 </div>
             </div>
