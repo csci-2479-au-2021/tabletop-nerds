@@ -4,6 +4,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Repositories\GameRepository;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
-Route::get('/profile', function () {
-    return view('profile');
-})->middleware(['auth'])->name('profile');
+Route::get('/profile', [UserController::class, 'userInfo'])->middleware(['auth'])->name('profile');
 
 Route::get('/wishlist', [WishlistController::class, 'viewWishlist'])->middleware(['auth'])->name('wishlist');
 

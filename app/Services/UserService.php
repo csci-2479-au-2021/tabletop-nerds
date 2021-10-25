@@ -6,9 +6,10 @@ use App\Repositories\UserRepository;
 
 class UserService 
 {
-    public function __construct(
-       private UserRepository $userRepository
-    ) {}
+    public function __construct(UserReopsitory $userRepository)
+        {
+            $this->userRepository = $userRepository;
+        }
 
     public function getWishlistByUserId(): array
     {
