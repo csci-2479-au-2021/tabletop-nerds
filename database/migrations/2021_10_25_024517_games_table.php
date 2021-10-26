@@ -14,13 +14,16 @@ class GamesTable extends Migration
     public function up()
     {
         Schema::create('games', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('game_type_id')->constrained();
             $table->string('title');
-            $table->decimal('complexity_rating', $precision = 3, $scale = 2);
+            $table->timestamps();
+            // $table->decimal('complexity_rating', $precision = 3, $scale = 2);
             $table->year('release_year');
-            $table->foreignId('publisher_id')->constrained();
-            $table->integer('playing_time_minutes');
-            $table->integer('min_number_players');
-            $table->integer('max_number_players');
+            // $table->foreignId('publisher_id')->constrained();
+            // $table->integer('playing_time_minutes');
+            // $table->integer('min_number_players');
+            // $table->integer('max_number_players');
         });
     }
 
@@ -31,6 +34,6 @@ class GamesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('games');
+        Schema::dropIfExists('games');
     }
 }

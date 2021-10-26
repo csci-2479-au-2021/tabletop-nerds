@@ -27,6 +27,6 @@ class GameUserTable extends Migration
      */
     public function down()
     {
-        Schema::drop('game_user');
+        Schema::dropifExists('game_user');
     }
 }

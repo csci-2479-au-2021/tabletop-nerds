@@ -14,6 +14,7 @@ class PublishersTable extends Migration
     public function up()
     {
         Schema::create('publishers', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
             $table->char('code',3);
         });
@@ -26,6 +27,6 @@ class PublishersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('publishers');
+        Schema::dropIfExists('publishers');
     }
 }

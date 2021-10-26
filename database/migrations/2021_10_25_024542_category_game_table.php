@@ -26,6 +26,6 @@ class CategoryGameTable extends Migration
      */
     public function down()
     {
-        Schema::drop('category_game');
+        Schema::dropIfExists('category_game');
     }
 }

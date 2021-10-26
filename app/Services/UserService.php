@@ -6,7 +6,7 @@ use App\Repositories\UserRepository;
 
 class UserService 
 {
-    public function __construct(UserReopsitory $userRepository)
+    public function __construct(UserRepository $userRepository)
         {
             $this->userRepository = $userRepository;
         }

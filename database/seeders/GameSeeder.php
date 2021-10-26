@@ -20,9 +20,9 @@ class GameSeeder extends Seeder
         $videoType = GameType::where('title', 'video')->first();
 
         $gameFactory = Game::factory();
-        $sorry = $gameFactory->make(['title' => 'Sorry']);
-        $tetris = $gameFactory->make(['title' => 'Tetris']);
-        $monopoly = $gameFactory->make(['title' => 'Monopoly']);
+        $sorry = $gameFactory->make(['title' => 'Sorry','release_year' => "1930"]);
+        $tetris = $gameFactory->make(['title' => 'Tetris', 'release_year' => "1984"]);
+        $monopoly = $gameFactory->make(['title' => 'Monopoly','release_year' => "1935"]);
 
         $boardType->games()->saveMany([$sorry, $monopoly]);
         $videoType->games()->save($tetris);
