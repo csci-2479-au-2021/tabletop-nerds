@@ -25,7 +25,7 @@ Route::get('/profile', [UserController::class, 'userInfo'])->middleware(['auth']
 
 Route::get('/wishlist', [WishlistController::class, 'viewWishlist'])->middleware(['auth'])->name('wishlist');
 
-Route::get('/gameView', [GameController::class, 'gameView'])->name('gameView');
+Route::get('/gameView/{id}', [GameController::class, 'gameView'])->name('gameView');
 
 Route::get('/search-results', [GameRepository::class, 'searchGamesByTitle']);
 
