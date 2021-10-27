@@ -13,4 +13,9 @@ class Game extends Model
     {
         return $this->belongsTo(GameType::class);
     }
+
+    protected $fillable = [
+        'title',
+        'description',
+    ];
 }
