@@ -17,5 +17,6 @@ class Game extends Model
     protected $fillable = [
         'title',
         'description',
+        'image'
     ];
 }
