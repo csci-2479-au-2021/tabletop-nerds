@@ -23,4 +23,10 @@ class GameRepository
         $findgames = DB::table('games')->where('title', 'like', "%{$key}%")->get();
         return view('search-results', ['key' => $key, 'games' => $findgames]);
     }
+
+    public function getGameById($id)
+    {
+        return DB::table('games')->find($id);
+    }
+    
 }

@@ -12,7 +12,7 @@
                     My Games:
                     <ul>
                         @foreach($games as $game)
-                            <li>{{$game->title}} - {{$game->gameType->title}}</li>
+                            <li><a href="{{ route('gameView', ['id' => $game->id]) }}">{{$game->title}}</a></li>
                         @endforeach
                     </ul>
                 </div>

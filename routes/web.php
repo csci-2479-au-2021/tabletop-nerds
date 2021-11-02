@@ -5,9 +5,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-use App\Repositories\GameRepository;
 use Illuminate\Support\Facades\Route;
-use App\Services\GameService;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +26,7 @@ Route::get('/wishlist', [WishlistController::class, 'viewWishlist'])->middleware
 
 Route::get('/gameView/{id}', [GameController::class, 'gameView'])->name('gameView');
 
-Route::get('/search-results', [SearchController::class, 'searchGamesByTitle']);
+Route::get('/search-results', [SearchController::class, 'searchGamesByTitle'])->name('search-results');
 
 Route::get('/games', [GameController::class, 'listGames'])->name('games');
 
