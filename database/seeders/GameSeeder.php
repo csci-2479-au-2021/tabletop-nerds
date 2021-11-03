@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Game;
 use App\Models\GameType;
+use App\Models\Category;
 use Database\Factories\GameFactory;
 use Illuminate\Database\Seeder;
 

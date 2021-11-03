@@ -14,6 +14,11 @@ class Game extends Model
         return $this->belongsTo(GameType::class);
     }
 
+    public function gameCategory()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     protected $fillable = [
         'title',
         'description',

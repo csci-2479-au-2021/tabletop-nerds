@@ -15,7 +15,7 @@ class CategoryGameTable extends Migration
     {
         Schema::create('category_game', function (Blueprint $table) {
             $table->foreignId('game_id')->constrained();
-            $table->foreignId('category_id')->constrained();
+            $table->foreignId('categories_id')->constrained();
         });
     }
 
