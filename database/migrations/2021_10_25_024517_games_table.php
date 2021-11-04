@@ -15,8 +15,11 @@ class GamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
+            // $table->foreignId('categories_id')->constrained();
             $table->foreignId('game_type_id')->constrained();
             $table->string('title');
+            $table->string('image');
+            $table->string('description');
             $table->timestamps();
             // $table->decimal('complexity_rating', $precision = 3, $scale = 2);
             $table->year('release_year');
