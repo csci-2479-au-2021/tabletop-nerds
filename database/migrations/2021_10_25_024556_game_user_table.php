@@ -17,6 +17,8 @@ class GameUserTable extends Migration
             $table->foreignId('game_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->decimal('game_rating', $precision = 2, $scale = 1);
+            $table->text('text_review');
+            $table->boolean('on_wishlist')->default(0);
         });
     }
 
