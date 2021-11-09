@@ -15,15 +15,14 @@ class GamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('categories_id')->constrained();
-            $table->foreignId('game_type_id')->constrained();
+            $table->foreignId('category_id')->constrained()->nullable();
             $table->string('title');
             $table->string('image');
-            $table->string('description');
+            $table->text('description');
             $table->timestamps();
             // $table->decimal('complexity_rating', $precision = 3, $scale = 2);
             $table->year('release_year');
-            // $table->foreignId('publisher_id')->constrained();
+            // $table->foreignId('publishers_id')->constrained()->nullable();
             // $table->integer('playing_time_minutes');
             // $table->integer('min_number_players');
             // $table->integer('max_number_players');
