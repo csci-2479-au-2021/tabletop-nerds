@@ -40,14 +40,26 @@ class GameSeeder extends Seeder
             'release_year' => "1986"]);
 
 
-        $cardCat = Category::where('code', 'CARD')->first();
-        $advnCat = Category::where('code', 'ADVN')->first();
-        $wargCat = Category::where('code', 'WARG')->first();
-        $civiCat = Category::where('code', 'CIVI')->first();
-
-        $cardCat->games()->save($splendor);
-        $advnCat->games()->save($labyrinth);
-        $wargCat->games()->save($sorry);
-        $civiCat->games()->save($concordia);
+            $cardCat = Category::where('code', 'CARD')->first()->games()->save($splendor);
+            // $econCat = Category::where('code', 'ECON')->first()->games()->save();
+            // $negoCat = Category::where('code', 'NEGO')->first()->games()->save();
+            // $diceCat = Category::where('code', 'DICE')->first()->games()->save();
+            $advnCat = Category::where('code', 'ADVN')->first()->games()->save($labyrinth);
+            // $fantCat = Category::where('code', 'FANT')->first()->games()->save();
+            // $fighCat = Category::where('code', 'FIGH')->first()->games()->save();
+            // $puzzCat = Category::where('code', 'PUZZ')->first()->games()->save();
+            // $miniCat = Category::where('code', 'MINI')->first()->games()->save();
+            // $terrCat = Category::where('code', 'TERR')->first()->games()->save();
+            $wargCat = Category::where('code', 'WARG')->first()->games()->save($sorry);
+            // $scifCat = Category::where('code', 'SCIF')->first()->games()->save();
+            $civiCat = Category::where('code', 'CIVI')->first()->games()->save($concordia);
+    
+            // $ffgPub = Publisher::where('code', 'FFG')->first()->games()->save($sorry);
+            // $zmgPub = Publisher::where('code', 'ZMG')->first()->games()->save();
+            // $kosPub = Publisher::where('code', 'KOS')->first()->games()->save();
+            // $dowPub = Publisher::where('code', 'DOW')->first()->games()->save($splendor);
+            // $cmnPub = Publisher::where('code', 'CMN')->first()->games()->save();
+            // $rvnPub = Publisher::where('code', 'RVN')->first()->games()->save($labyrinth);
+            // $rggPub = Publisher::where('code', 'RGG')->first()->games()->save($concordia);
     }
 }
