@@ -22,7 +22,7 @@ class GamesTable extends Migration
             $table->timestamps();
             // $table->decimal('complexity_rating', $precision = 3, $scale = 2);
             $table->year('release_year');
-            // $table->foreignId('publishers_id')->constrained()->nullable();
+            // $table->foreignId('publisher_id')->constrained()->nullable();
             // $table->integer('playing_time_minutes');
             // $table->integer('min_number_players');
             // $table->integer('max_number_players');

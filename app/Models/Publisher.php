@@ -13,6 +13,6 @@ class Publisher extends Model
 
     public function games()
     {
-        return $this->hasOne(Game::class);
+        return $this->hasMany(Game::class);
     }
 }
