@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Services\GameService;
+use App\Models\Reviews;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,5 +31,17 @@ Route::get('/gameView/{id}', [GameController::class, 'gameView'])->name('gameVie
 Route::get('/search-results', [SearchController::class, 'searchGamesByTitle'])->name('search-results');
 
 Route::get('/games', [GameController::class, 'listGames'])->name('games');
+
+Route::get('/gameView',function(){
+    return view('gameView');
+});
+
+Route::post('/gameView',function(){
+    $Reviews = new Reviews();
+    $Reviews->game_rating = request('game_rating');
+    $Reviews->text_review = request('game_review');
+    $Reviews->save();
+    return redirect('/gameview');
+});
 
 require __DIR__.'/auth.php';
