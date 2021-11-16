@@ -21,24 +21,33 @@
                             <td class="text-center border border-green-600">{{$game->description}}</td>
                             <td class="text-center border border-green-600">{{$game->release_year}}</td>  
                             <td class="text-center border border-green-600">
-                                 <form action="/gameView" method="POST">
-                                    <br><br>
-                                    <label for="gamerating">Rate Game (1-10)</label>
-                                    <input type="number" id="gamerating" name="game_rating" min="1" max="10" step=".1" required>
-                                    <br><br>
-                                    <label for="textreview">Write a review: </label>
-                                    <textarea name="text_review" id="textreview" cols="25" rows="5" placeholder="Enter review here..." required></textarea>
-                                    <br><br>
-                                    <button style=color:blue type="reset">Clear</button>
-                                    <button style=color:red type="submit">Submit</button>
-                                    <br><br>  
-                                </form>
+                            <a href="{{ route('addGameRating', ['id' => $game->id]) }}">Submit a Review</a>
                             </td>
+                            
                         </tr>  
-                    </table>  
-                    </table> 
+                    </table>   
                 </div>
             </div>
         </div>
     </div>
+    
+<!-- 
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <legend class="border-2 border-indigo-600">
+            <form class="text-center" method='post' action="{{ route('userGameRating') }}">
+                @csrf
+                <input type="text" value ="{{$game->id}}" name="game_id" hidden>
+                <label>Game Rating</label><br>
+                <input type="number" name="game_rating"><br><br><br>
+                <label>Text Review</label><br>
+                <textarea name="text_review" rows="10" columns="10"> </textarea><br><br><br>
+                <button class="border-2 border-indigo-600 "type="submit"> Submit Rating</button><br><br><br>
+            <form>
+        </legend>
+    </div>
+</div> -->
+
+
+
 </x-app-layout>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 // use App\Classes\WishlistGame;
 // use App\Classes\Game;
 use App\Models\Game;
+use App\Models\Reviews;
 use App\Services\GameService;
 
 use Illuminate\Http\Request;
@@ -34,7 +35,13 @@ class GameController extends Controller
     
     
     public function gameView($id){
-        return view('gameView', ['game'=>$this->gameService->getGameById($id)]);
+        $game = $this->gameService->getGameById($id);
+        return view('gameView', compact('game'));
 
     }
+
+
+   
+
+
 }
