@@ -25,7 +25,7 @@ class UserGameReviewPost extends FormRequest
     {
         return [
             'game_id' => 'bail|required|integer',
-            'game_rating' => 'bail|required|integer',
+            'game_rating' => 'bail|required|numeric',
             'text_review' => 'bail|required|string|max:255',
         ];
     }
