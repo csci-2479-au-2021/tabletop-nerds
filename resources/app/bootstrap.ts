@@ -1,3 +1,21 @@
+import Alpine from 'alpinejs';
+
+// this imports everything we exported in src/index.ts
+import tabletop from './src';
+
+// define the properties we'll be adding to the window object
+declare global {
+    interface Window {
+        _: any;
+        axios: any;
+        tabletop: any;
+        Alpine: any;
+    }
+}
+
+// add our app to the window object
+window.tabletop = tabletop;
+
 window._ = require('lodash');
 
 /**
@@ -26,3 +44,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+// init AlpineJS
+Alpine.start();
+
+export { Alpine };

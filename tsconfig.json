@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "allowJs": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "strictNullChecks": true,
+        "moduleResolution": "node"
+    },
+    "include": ["resources/app"]
+}

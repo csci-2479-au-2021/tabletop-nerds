@@ -23,7 +23,6 @@
                             <td class="text-center border border-green-600">
                             <a href="{{ route('addGameRating', ['id' => $game->id]) }}">Submit a Review</a>
                             </td>
-                            
                         </tr>  
                     </table>   
                 </div>

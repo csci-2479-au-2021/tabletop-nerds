@@ -16,7 +16,7 @@ class PublishersTable extends Migration
         Schema::create('publishers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->char('code',3);
+            $table->char('code',3)->unique();
         });
     }
 

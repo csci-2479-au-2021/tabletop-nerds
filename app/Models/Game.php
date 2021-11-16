@@ -9,14 +9,14 @@ class Game extends Model
 {
     use HasFactory;
 
-    public function gameType()
-    {
-        return $this->belongsTo(GameType::class);
-    }
-
     public function gameCategory()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function gamePublisher()
+    {
+        return $this->belongsTo(Publisher::class);
     }
 
     protected $fillable = [

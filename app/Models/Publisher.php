@@ -11,5 +11,8 @@ class Publisher extends Model
 
     public $timestamps = false;
 
-  
+    public function games()
+    {
+        return $this->hasMany(Game::class);
+    }
 }

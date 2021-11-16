@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Game;
-use App\Models\GameType;
 use App\Models\Category;
+use App\Models\Publisher;
 use Database\Factories\GameFactory;
 use Illuminate\Database\Seeder;
 
@@ -17,18 +17,54 @@ class GameSeeder extends Seeder
      */
     public function run()
     {
-        $boardType = GameType::where('title', 'board')->first();
-        $videoType = GameType::where('title', 'video')->first();
-
         $gameFactory = Game::factory();
-        $sorry = $gameFactory->make(['title' => 'Sorry', 'image' => "http://localhost/images/sorry.jpg", 
-            'description' => 'Lol, Sorry!', 'release_year' => "1930"]);
-        $tetris = $gameFactory->make(['title' => 'Tetris', 'image' => "https://www.logolynx.com/images/logolynx/e6/e627e7db10c69b1d4a2b248f4e78386b.png", 
-            'description' => 'Top Out!', 'release_year' => "1984"]);
-        $monopoly = $gameFactory->make(['title' => 'Monopoly', 'image' => "http://localhost/images/monopoly.jpg", 
-            'description' => 'Fight Me!', 'release_year' => "1935"]);
+        $sorry = $gameFactory->make([
+            'title' => 'Sorry', 
+            'image' => "http://localhost/images/sorry.jpg", 
+            'description' => 'Lol, Sorry!', 
+            'release_year' => "1930"]);
+        $splendor = $gameFactory->make([
+            'title' => 'Splendor', 
+            'image' => "http://localhost/images/splendor.jpg", 
+            'description' => 'Strategy turn-based card game, players assume the role of wealthy Renaissance merchants, exploiting mines and caravans, hiring craftsmen and leveraging their influence with nobility.', 
+            'release_year' => "2014"]);
+        $concordia = $gameFactory->make([
+            'title' => 'Concordia', 
+            'image' => "http://localhost/images/concordia.jpg", 
+            'description' => 'Peaceful strategy game of economic development in Roman times', 
+            'release_year' => "2013"]);
+        $labyrinth = $gameFactory->make([
+            'title' => 'Labyrinth', 
+            'image' => "http://localhost/images/labyrinth.jpg",
+            'description' => 'In this enchanted labyrinth players set out to search for mysterious objects and creatures.', 
+            'release_year' => "1986"]);
 
-        $boardType->games()->saveMany([$sorry, $monopoly]);
-        $videoType->games()->save($tetris);
+
+            $cardCat = Category::where('code', 'CARD')->first();
+            $econCat = Category::where('code', 'ECON')->first();
+            $negoCat = Category::where('code', 'NEGO')->first();
+            $diceCat = Category::where('code', 'DICE')->first();
+            $advnCat = Category::where('code', 'ADVN')->first();
+            $fantCat = Category::where('code', 'FANT')->first();
+            $fighCat = Category::where('code', 'FIGH')->first();
+            $puzzCat = Category::where('code', 'PUZZ')->first();
+            $miniCat = Category::where('code', 'MINI')->first();
+            $terrCat = Category::where('code', 'TERR')->first();
+            $wargCat = Category::where('code', 'WARG')->first();
+            $scifCat = Category::where('code', 'SCIF')->first();
+            $civiCat = Category::where('code', 'CIVI')->first();
+    
+            Publisher::where('code', 'FFG')->first()->games()->save($sorry);
+            Publisher::where('code', 'ZMG')->first()->games()->save();
+            Publisher::where('code', 'KOS')->first()->games()->save();
+            Publisher::where('code', 'DOW')->first()->games()->save($splendor);
+            Publisher::where('code', 'CMN')->first()->games()->save();
+            Publisher::where('code', 'RVN')->first()->games()->save($labyrinth);
+            Publisher::where('code', 'RGG')->first()->games()->save($concordia);
+
+            $cardCat->games()->attach($splendor->id);
+            $advnCat->games()->attach($labyrinth->id);
+            $wargCat->games()->attach($sorry->id);
+            $civiCat->games()->attach($concordia->id);
     }
 }

@@ -9,8 +9,10 @@ class Category extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function games()
     {
-        return $this->hasMany(Game::class);
+        return $this->belongsToMany(Game::class);
     }
 }
