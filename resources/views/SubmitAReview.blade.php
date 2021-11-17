@@ -1,11 +1,9 @@
 <x-app-layout>               
     <x-slot name="header">
-        <center>
-        <br>
+        <center><br>
         <h1 class="font-bold text-xl text-gray-800 leading-tight">
             {{ __($newReview->title) }}
-        </h1>
-        <br>
+        </h1><br>
         </center>
         
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Reviews extends Model
+class Reviews extends Pivot
 {
     // use game_user;
 
@@ -18,5 +16,5 @@ class Reviews extends Model
         'text_review',
         'on_wishlist',
     ];
-}
 
+}

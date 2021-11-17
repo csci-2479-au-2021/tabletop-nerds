@@ -12,7 +12,6 @@
                     User ID: {{ $userId }}</br>
                     Name: {{ $userName }}</br>
                     Email: {{ $userEmail }}
-
                 </div>
             </div>
         </div>

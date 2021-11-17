@@ -28,7 +28,4 @@ class GameRepository
     {
         return DB::table('games')->find($id);
     }
-
-    
-    
 }

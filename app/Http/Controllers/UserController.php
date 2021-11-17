@@ -19,9 +19,7 @@ class UserController extends Controller
     {
         $this->userService = $userService;
         $this->gameService = $gameService;
-
     }
-
 
     public function userInfo()
     {
@@ -31,7 +29,6 @@ class UserController extends Controller
 
         return view('profile', compact('userId', 'userName', 'userEmail'));
     }
-
 
     public function UserGameRating($id){
         $newReview = new Reviews();
@@ -45,15 +42,16 @@ class UserController extends Controller
         return view('YourReview');
     }
 
-
     public function SubmitGameRating(UserGameReviewPost $request){
         // $this->authorize('create', Reviews::class);
         $validatedInput = $request->validated();
         $user_id = Auth::user()->id;
-        $userReview = $this->userService->submitGameReview($validatedInput['game_id'],$user_id,$validatedInput['game_rating'],$validatedInput['text_review']);
+        $userReview = $this->userService->submitGameReview(
+            $validatedInput['game_id'],
+            $user_id,$validatedInput['game_rating'],
+            $validatedInput['text_review']);
+
         return view('YourReview',  compact('userReview'));
     }
-
-
 
 }

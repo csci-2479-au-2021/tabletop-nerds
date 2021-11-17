@@ -19,9 +19,6 @@ class UserService
 
     public function submitGameReview(int $game_id, int $user_id, float $game_rating, string $text_review):Reviews
     {
-        $submittedReview = $this->userRepository->InsertGameReview($game_id, $user_id, $game_rating, $text_review);
-        $returnedReview =  new Reviews();
-        $returnedReview = $submittedReview;
-        return ($returnedReview);
+        return $this->userRepository->InsertGameReview($game_id, $user_id, $game_rating, $text_review);
     }
 }

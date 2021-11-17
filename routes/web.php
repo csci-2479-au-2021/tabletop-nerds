@@ -32,17 +32,10 @@ Route::get('/search-results', [SearchController::class, 'searchGamesByTitle'])->
 
 Route::get('/games', [GameController::class, 'listGames'])->name('games');
 
-// Route::post('/gameView',function(){
-//     $Reviews = new Reviews();
-//     $Reviews->game_rating = request('game_rating');
-//     $Reviews->text_review = request('game_review');
-//     $Reviews->save();
-//     return redirect('/gameview');
-// });
-
 Route::get('/SubmitAReview/{id}', [UserController::class,'UserGameRating'])->middleware(['auth'])->name('addGameRating');
 
 Route::get('/YourReview', [UserController::class,'ViewGameReview'])->middleware(['auth'])->name('viewGameRating');
+
 Route::post('/YourReview', [UserController::class, 'SubmitGameRating'])->middleware(['auth'])->name('userGameRating');
 
 require __DIR__.'/auth.php';
