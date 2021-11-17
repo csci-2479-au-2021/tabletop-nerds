@@ -4,9 +4,10 @@ namespace App\Repositories;
 
 class UserRepository
 {
-    public function getWishlistByUserId(): array
+    public function selectWishlistByUserId($userId): Collections
     {
-        $wishlist = [];
+        
+        return Game::orderBy('title')->get();
 
         return $wishlist;
     }

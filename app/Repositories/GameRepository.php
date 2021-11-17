@@ -14,6 +14,7 @@ class GameRepository
 
     public function getGames(): Collection
     {
+        $wishlist = Game::orderBy('title')->get();
         return Game::orderBy('title')->get();
     }
 
