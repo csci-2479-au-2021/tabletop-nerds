@@ -55,10 +55,10 @@ class GameSeeder extends Seeder
             $civiCat = Category::where('code', 'CIVI')->first();
     
             Publisher::where('code', 'FFG')->first()->games()->save($sorry);
-            Publisher::where('code', 'ZMG')->first()->games()->save();
-            Publisher::where('code', 'KOS')->first()->games()->save();
+            // Publisher::where('code', 'ZMG')->first()->games()->save();
+            // Publisher::where('code', 'KOS')->first()->games()->save();
             Publisher::where('code', 'DOW')->first()->games()->save($splendor);
-            Publisher::where('code', 'CMN')->first()->games()->save();
+            // Publisher::where('code', 'CMN')->first()->games()->save();
             Publisher::where('code', 'RVN')->first()->games()->save($labyrinth);
             Publisher::where('code', 'RGG')->first()->games()->save($concordia);
 

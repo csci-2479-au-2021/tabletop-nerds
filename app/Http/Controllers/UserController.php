@@ -24,4 +24,6 @@ class UserController extends Controller
 
         return view('profile', compact('userId', 'userName', 'userEmail'));
     }
+
+    
 }

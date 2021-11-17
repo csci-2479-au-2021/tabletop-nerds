@@ -31,4 +31,7 @@ Route::get('/search-results', [SearchController::class, 'searchGamesByTitle'])->
 
 Route::get('/games', [GameController::class, 'listGames'])->name('games');
 
+Route::post('/wishlist/add', [WishlistController::class, 'AddToWishlist'])->middleware(['auth'])->name('addToWishlist');
+Route::post('/wishlist/remove', [WishlistController::class, 'RemoveFromWishlist'])->middleware(['auth'])->name('removeFromWishlist');
+
 require __DIR__.'/auth.php';
