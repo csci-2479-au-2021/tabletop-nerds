@@ -47,6 +47,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Game::class)->using(ReviewAndWishlist::class)->withPivot([
             'game_rating',
             'text_review',
+            'on_wishlist'
         ]);
     }
 }

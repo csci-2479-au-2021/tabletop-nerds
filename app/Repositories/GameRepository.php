@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Game;
+use App\Models\User;
 use App\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,8 +15,16 @@ class GameRepository
 
     public function getGames(): Collection
     {
-        $wishlist = Game::orderBy('title')->get();
+        // $wishlist = Game::orderBy('title')->get();
         return Game::orderBy('title')->get();
+    }
+
+    public function getGamesByUserId(int $userId): Collection
+    {
+        // $wishlist = Game::orderBy('title')->get();
+        $userWithGames = User::find($userId)->with('userGame')->first();
+
+        return $userWithGames->userGame;
     }
 
     public function searchGamesByTitle(Request $request)

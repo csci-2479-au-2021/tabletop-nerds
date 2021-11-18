@@ -24,6 +24,10 @@ class GameService
         return ($this->gameRepository->getGames());
     }
 
+    public function getGamesByUserId(int $userId) {
+        return $this->gameRepository->getGamesByUserId($userId);
+    }
+
     public function searchGamesByTitle (Request $title)
     {    
         return ($this->gameRepository->searchGamesByTitle($title));

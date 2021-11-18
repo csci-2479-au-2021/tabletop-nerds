@@ -25,6 +25,7 @@ class AddToWishlistRequest extends FormRequest
     {
         return [
             'game_id' => 'bail|required|integer|exists:games,id',
+            'user_id' => 'bail|required|integer|exists:users,id',
             'on_wishlist' =>  'bail|required|boolean'
         ];
     }

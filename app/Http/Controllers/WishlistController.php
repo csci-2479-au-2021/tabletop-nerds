@@ -51,10 +51,20 @@ class WishlistController extends Controller
         return redirect()->route('wishlist');
     }
 
+    public function toggleWishlist(AddToWishlistRequest $request)
+    {
+        // $userId = Auth::user()->id;
+        $validatedInput = $request->validated(); 
 
-    
+        $addorUpdateThisGame = $this->wishlistService->addToWishlist(
+            $validatedInput['game_id'],
+            $validatedInput['user_id'],
+            $validatedInput['on_wishlist']);
 
-    
-    
-    
+        return response()->json([
+            'game_id' => $validatedInput['game_id'],
+            'user_id' => $validatedInput['user_id'],
+            'on_wishlist' => $validatedInput['on_wishlist'],
+        ]);
+    }
 }

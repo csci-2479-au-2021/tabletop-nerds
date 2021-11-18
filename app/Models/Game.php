@@ -9,9 +9,16 @@ class Game extends Model
 {
     use HasFactory;
 
+    public bool $onWishlist = false;
+
     public function gameCategory()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function getOnWishlistAttribute()
+    {
+        return $this->onWishlist;
     }
 
     public function gameUser()
@@ -19,6 +26,7 @@ class Game extends Model
         return $this->belongsToMany(User::class)->using(ReviewAndWishlist::class)->withPivot([
             'game_rating',
             'text_review',
+            'on_wishlist'
         ]);;
     }
 
@@ -33,5 +41,9 @@ class Game extends Model
         'description',
         'image',
         'category_id'
+    ];
+
+    protected $appends = [
+        'on_wishlist'
     ];
 }
