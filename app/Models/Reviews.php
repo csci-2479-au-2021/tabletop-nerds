@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Reviews extends Pivot
+class ReviewAndWishlist extends Pivot
 {
+    protected $table = 'game_user';
     // use game_user;
 
     protected $fillable = [

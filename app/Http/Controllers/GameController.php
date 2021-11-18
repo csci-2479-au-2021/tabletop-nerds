@@ -1,10 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-// use App\Classes\WishlistGame;
-// use App\Classes\Game;
-use App\Models\Game;
-use App\Models\Reviews;
 use App\Services\GameService;
 
 use Illuminate\Http\Request;

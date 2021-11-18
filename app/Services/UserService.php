@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\ReviewAndWishlist;
 use App\Repositories\UserRepository; 
-use App\Models\Reviews;
 
 class UserService 
 {
@@ -17,8 +17,8 @@ class UserService
         return $this->userRepository->getWishlistByUserId();
     }
 
-    public function submitGameReview(int $game_id, int $user_id, float $game_rating, string $text_review):Reviews
+    public function submitGameReview(int $game_id, int $user_id, float $game_rating, string $text_review): ReviewAndWishlist
     {
-        return $this->userRepository->InsertGameReview($game_id, $user_id, $game_rating, $text_review);
+        return $this->userRepository->upsertGameReview($game_id, $user_id, $game_rating, $text_review);
     }
 }

@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Repositories; 
-use App\Models\Reviews;
+use App\Models\Game;
+use App\Models\GameUser;
+use App\Models\ReviewAndWishlist;
+use App\Models\User;
 
 use Illuminate\Support\Facades\DB;
 
@@ -15,15 +18,28 @@ class UserRepository
         return $wishlist;
     }
 
-    public function InsertGameReview(int $game_id, int $user_id, int $game_rating, string $text_review):Reviews{
+    public function upsertGameReview(int $game_id, int $user_id, float $game_rating, string $text_review): ReviewAndWishlist
+    {
+        $user = User::find($user_id);
+        $rating = [
+            'game_rating' => $game_rating,
+            'text_review' => $text_review,
+        ];
 
-        DB::insert('insert into game_user (game_id, user_id, game_rating, text_review) values (?,?,?,?)', [$game_id, $user_id,$game_rating,$text_review]);
-        $dbValue = DB::table('game_user')->where('game_id', $game_id)->first();
-        $userReview = new Reviews();
-        $userReview->game_id = $dbValue->game_id;
-        $userReview->user_id = $dbValue->user_id;
-        $userReview->game_rating = $dbValue->game_rating;
-        $userReview->text_review = $dbValue->text_review;
-        return $userReview;
+        if (self::gameAlreadyThere($game_id, $user_id)) {
+            // update
+            $user->userGame()->updateExistingPivot($game_id, $rating);
+        } else {
+            // insert
+            $user->userGame()->attach($game_id, $rating);
+        }
+
+        return $user->userGame->where('id', $game_id)->first()->pivot;
+    }
+
+    private static function gameAlreadyThere(int $gameId, int $userId): bool
+    {
+        return ReviewAndWishlist::where('game_id', $gameId)
+            ->where('user_id', $userId)->exists();
     }
 }

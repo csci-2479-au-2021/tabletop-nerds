@@ -16,8 +16,8 @@ class GameUserTable extends Migration
         Schema::create('game_user', function (Blueprint $table) {
             $table->foreignId('game_id')->constrained();
             $table->foreignId('user_id')->constrained();
-            $table->decimal('game_rating', $precision = 3, $scale = 1);
-            $table->text('text_review');
+            $table->decimal('game_rating', 3, 1)->nullable();
+            $table->text('text_review')->nullable();
             $table->boolean('on_wishlist')->default(0);
         });
     }
