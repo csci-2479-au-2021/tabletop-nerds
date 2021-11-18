@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use App\Models\Reviews;
 use App\Services\UserService;
 use App\Services\GameService;
 use App\Http\Requests\UserGameReviewPost;
+use App\Models\ReviewAndWishlist;
 
 class UserController extends Controller
 {
@@ -31,7 +30,7 @@ class UserController extends Controller
     }
 
     public function UserGameRating($id){
-        $newReview = new Reviews();
+        $newReview = new ReviewAndWishlist();
         $game = $this->gameService->getGameById($id);
         $newReview->game_id = $id;
         $newReview->title = $game->title;
@@ -43,7 +42,6 @@ class UserController extends Controller
     }
 
     public function SubmitGameRating(UserGameReviewPost $request){
-        // $this->authorize('create', Reviews::class);
         $validatedInput = $request->validated();
         $user_id = Auth::user()->id;
         $userReview = $this->userService->submitGameReview(

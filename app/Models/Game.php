@@ -23,6 +23,7 @@ class Game extends Model
         'id',
         'title',
         'description',
-        'image'
+        'image',
+        'category_id'
     ];
 }

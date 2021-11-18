@@ -7,9 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class UserRepository
 {
-    public function getWishlistByUserId(): array
+    public function selectWishlistByUserId($userId): Collections
     {
-        $wishlist = [];
+        
+        return Game::orderBy('title')->get();
 
         return $wishlist;
     }
