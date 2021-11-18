@@ -31,6 +31,11 @@ Route::get('/search-results', [SearchController::class, 'searchGamesByTitle'])->
 
 Route::get('/games', [GameController::class, 'listGames'])->name('games');
 
+Route::get('/SubmitAReview/{id}', [UserController::class,'UserGameRating'])->middleware(['auth'])->name('addGameRating');
+
+Route::get('/YourReview', [UserController::class,'ViewGameReview'])->middleware(['auth'])->name('viewGameRating');
+
+Route::post('/YourReview', [UserController::class, 'SubmitGameRating'])->middleware(['auth'])->name('userGameRating');
 Route::post('/wishlist/add', [WishlistController::class, 'AddToWishlist'])->middleware(['auth'])->name('addToWishlist');
 Route::post('/wishlist/remove', [WishlistController::class, 'RemoveFromWishlist'])->middleware(['auth'])->name('removeFromWishlist');
 

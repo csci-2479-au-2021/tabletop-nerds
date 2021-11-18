@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function userGame()
+    {
+        return $this->belongsToMany(Game::class)->using(ReviewAndWishlist::class)->withPivot([
+            'game_rating',
+            'text_review',
+        ]);
+    }
 }

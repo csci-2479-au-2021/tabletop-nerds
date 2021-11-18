@@ -47,7 +47,8 @@ class WishlistRepository
         }   
         
         else{
-            DB::insert('insert into game_user (game_id, user_id, game_rating, text_review, on_wishlist) values (?,?,?,?,?)', [$game_id, $user_id,0,"",$on_wishlist]);
+            DB::insert('insert into game_user (game_id, user_id, on_wishlist) values (?,?,?)',
+                [$game_id, $user_id, $on_wishlist]);
         }
 
 

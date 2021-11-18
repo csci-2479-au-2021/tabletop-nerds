@@ -14,12 +14,21 @@ class Game extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function gameUser()
+    {
+        return $this->belongsToMany(User::class)->using(ReviewAndWishlist::class)->withPivot([
+            'game_rating',
+            'text_review',
+        ]);;
+    }
+
     public function gamePublisher()
     {
         return $this->belongsTo(Publisher::class);
     }
 
     protected $fillable = [
+        'id',
         'title',
         'description',
         'image',
