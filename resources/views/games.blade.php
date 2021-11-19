@@ -29,7 +29,7 @@
 
                                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-xl shadow-inner"
                                             type="submit"
-                                            @click="() => tabletop.games.toggleWishlist(game_id, user_id, on_wishlist)"
+                                            @click="() => tabletop.games.toggleWishlist(game_id, user_id, on_wishlist).then(resp => on_wishlist = resp.data.on_wishlist)"
                                             x-text="on_wishlist ? 'Remove from wishlist' : 'Add to wishlist'"></button><br><br><br>
                                 </div>    
                         </div>
