@@ -9,16 +9,24 @@ class Game extends Model
 {
     use HasFactory;
 
-    public bool $onWishlist = false;
-
     public function gameCategory()
     {
         return $this->belongsToMany(Category::class);
     }
 
-    public function getOnWishlistAttribute()
+    public function getGameOnWishlistAttribute(): bool
     {
-        return $this->onWishlist;
+        // return $this->onWishlist;
+        // $userId = auth()->user()->id;
+        // $gameUser = $this->gameUser->find($userId);
+
+        // if ($gameUser) {
+        //     return $gameUser->pivot->on_wishlist === 1;
+        // }
+
+        return false;
+
+        // return 'stuff';
     }
 
     public function gameUser()
@@ -44,6 +52,10 @@ class Game extends Model
     ];
 
     protected $appends = [
-        'on_wishlist'
+        'game_on_wishlist'
     ];
+
+    // protected $casts = [
+    //     'on_wishlist' => 'boolean'
+    // ];
 }

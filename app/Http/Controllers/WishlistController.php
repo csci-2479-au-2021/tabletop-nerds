@@ -59,7 +59,7 @@ class WishlistController extends Controller
         $addorUpdateThisGame = $this->wishlistService->addToWishlist(
             $validatedInput['game_id'],
             $validatedInput['user_id'],
-            $validatedInput['on_wishlist']);
+            !$validatedInput['on_wishlist']); // we want to toggle the existing value
 
         return response()->json([
             'game_id' => $validatedInput['game_id'],

@@ -29,16 +29,20 @@ class GameController extends Controller
     public function listGames(){
         $userGames = auth()->user()->userGame;
         $games = $this->gameService->getGames();
+        $gamesArray = [];
 
         foreach ($games as $game) {
+            $onWishlist = false;
             $userGame = $userGames->where('id', $game->id)->first();
 
             if ($userGame) {
-                $game->onWishlist = $userGame->pivot->on_wishlist === 1;
+                $onWishlist = $userGame->pivot->on_wishlist === 1;
             }
+
+            $gamesArray[] = [$onWishlist, $game];
         }
 
-        return view('games', ['games' => $games]);
+        return view('games', ['games' => $gamesArray]);
     }
 
     
