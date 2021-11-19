@@ -2,47 +2,52 @@ import axios from 'axios';
 import { Alpine } from '../../bootstrap';
 import { ToggleWishlist } from '../types/ToggleWishlist';
 
-// const initGamelist = () => {
-//     Alpine.data('gamelist', () => ({
-//         userId
-//         toggleWishlist(gameId: number) {
-//             axios.post<ToggleWishlist>('http://localhost/api/wishlist', {
-//                 game_id: gameId,
-//                 user_id: userId,
-//                 on_wishlist: onWishlist
-//             }).then(resp => {
-//                 // do stuff with response when we get it
-//                 if (resp.status === 200) {
-//                     const msg = resp.data.on_wishlist ? 'Game added to your wishlist!'
-//                         : 'Game removed from your wishlist';
-//                     alert(msg);
-//                 }
-//             });
-//         }
-//     }));
-// }
-const toggleWishlist = (
-    gameId: number,
-    userId: number,
-    onWishlist: boolean
-) => {
-    return axios.post<ToggleWishlist>('http://localhost/api/wishlist', {
-        game_id: gameId,
-        user_id: userId,
-        on_wishlist: onWishlist
-    })
-    // .then(resp => {
-    //     // do stuff with response when we get it
-    //     if (resp.status === 200) {
-    //         const msg = resp.data.on_wishlist ? 'Game added to your wishlist!'
-    //             : 'Game removed from your wishlist';
-    //         alert(msg);
-    //         // this.on_wishlist = 
-    //     }
-    // });
+
+interface GameProps {
+    userId: number;
+    gameId: number;
+    onWishlist: boolean;
+}
+interface Game extends GameProps {
+    setGameInfo: (gameId: number, userId: number, onWishlist: boolean) => void;
+    toggleWishlist: GameProps & { "@click"(): void };
+    getButtonText: () => string;
+}
+
+const initGamelist = () => {
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('game', () => ({
+            setGameInfo(gameId: number, userId: number, onWishlist: boolean): void {
+                this.gameId = gameId;
+                this.userId = userId;
+                this.onWishlist = onWishlist;
+            },
+            getButtonText(): string {
+                return this.onWishlist ? 'Remove from wishlist' : 'Add to wishlist';
+            },
+            toggleWishlist: {
+                ['@click']() {
+                    axios.post<ToggleWishlist>('http://localhost/api/wishlist', {
+                        game_id: this.gameId,
+                        user_id: this.userId,
+                        on_wishlist: this.onWishlist
+                    }).then(({status, data}) => {
+                        // do stuff with response when we get it
+                        if (status === 200) {
+                            this.onWishlist = data.on_wishlist;
+                        } else {
+                            const msg = data.on_wishlist
+                                ? 'Problem removing game from your wishlist :('
+                                : 'Problem adding game to your wishlist :(';
+                            alert(msg);
+                        }
+                    });
+                }
+            }
+        } as Game));
+    });
 }
 
 export default {
-    // initGamelist
-    toggleWishlist
+    initGamelist
 }

@@ -53,11 +53,10 @@ class WishlistController extends Controller
 
     public function toggleWishlist(AddToWishlistRequest $request)
     {
-        // $userId = Auth::user()->id;
         $validatedInput = $request->validated();
         $onWishlist = !$validatedInput['on_wishlist']; // we want to toggle the existing value
 
-        $addorUpdateThisGame = $this->wishlistService->addToWishlist(
+        $this->wishlistService->addToWishlist(
             $validatedInput['game_id'],
             $validatedInput['user_id'],
             $onWishlist);
