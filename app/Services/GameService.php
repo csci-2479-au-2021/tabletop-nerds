@@ -27,5 +27,5 @@ class GameService
     public function searchGamesByTitle (Request $title)
     {    
         return ($this->gameRepository->searchGamesByTitle($title));
-    }   
+    }
 }

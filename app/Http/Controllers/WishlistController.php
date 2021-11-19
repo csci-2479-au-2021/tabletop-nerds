@@ -51,10 +51,20 @@ class WishlistController extends Controller
         return redirect()->route('wishlist');
     }
 
+    public function toggleWishlist(AddToWishlistRequest $request)
+    {
+        $validatedInput = $request->validated();
+        $onWishlist = !$validatedInput['on_wishlist']; // we want to toggle the existing value
 
-    
+        $this->wishlistService->addToWishlist(
+            $validatedInput['game_id'],
+            $validatedInput['user_id'],
+            $onWishlist);
 
-    
-    
-    
+        return response()->json([
+            'game_id' => $validatedInput['game_id'],
+            'user_id' => $validatedInput['user_id'],
+            'on_wishlist' => $onWishlist,
+        ]);
+    }
 }

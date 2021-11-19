@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Services\GameService;
 
 use Illuminate\Http\Request;
@@ -25,7 +26,22 @@ class GameController extends Controller
     }
 
     public function listGames(){
-        return view('games', ['games'=>$this->gameService->getGames()]);
+        $userGames = auth()->user()->userGame;
+        $games = $this->gameService->getGames();
+        $gamesArray = [];
+
+        foreach ($games as $game) {
+            $onWishlist = false;
+            $userGame = $userGames->where('id', $game->id)->first();
+
+            if ($userGame) {
+                $onWishlist = $userGame->pivot->on_wishlist === 1;
+            }
+
+            $gamesArray[] = [$onWishlist, $game];
+        }
+
+        return view('games', ['games' => $gamesArray]);
     }
 
     

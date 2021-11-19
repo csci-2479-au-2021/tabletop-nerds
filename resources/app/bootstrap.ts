@@ -15,6 +15,7 @@ declare global {
 
 // add our app to the window object
 window.tabletop = tabletop;
+tabletop.games.initGamelist();
 
 window._ = require('lodash');
 

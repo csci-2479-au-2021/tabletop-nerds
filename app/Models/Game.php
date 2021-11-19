@@ -19,6 +19,7 @@ class Game extends Model
         return $this->belongsToMany(User::class)->using(ReviewAndWishlist::class)->withPivot([
             'game_rating',
             'text_review',
+            'on_wishlist'
         ]);;
     }
 
