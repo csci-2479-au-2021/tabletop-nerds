@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ReviewAndWishlist;
 use App\Services\GameService;
 
 use Illuminate\Http\Request;

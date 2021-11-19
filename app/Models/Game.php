@@ -14,21 +14,6 @@ class Game extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function getGameOnWishlistAttribute(): bool
-    {
-        // return $this->onWishlist;
-        // $userId = auth()->user()->id;
-        // $gameUser = $this->gameUser->find($userId);
-
-        // if ($gameUser) {
-        //     return $gameUser->pivot->on_wishlist === 1;
-        // }
-
-        return false;
-
-        // return 'stuff';
-    }
-
     public function gameUser()
     {
         return $this->belongsToMany(User::class)->using(ReviewAndWishlist::class)->withPivot([
@@ -54,8 +39,4 @@ class Game extends Model
     protected $appends = [
         'game_on_wishlist'
     ];
-
-    // protected $casts = [
-    //     'on_wishlist' => 'boolean'
-    // ];
 }
