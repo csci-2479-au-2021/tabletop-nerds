@@ -35,8 +35,4 @@ class Game extends Model
         'image',
         'category_id'
     ];
-
-    protected $appends = [
-        'game_on_wishlist'
-    ];
 }

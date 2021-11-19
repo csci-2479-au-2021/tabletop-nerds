@@ -36,7 +36,7 @@ const initGamelist = () => {
                         if (status === 200) {
                             this.onWishlist = data.on_wishlist;
                         } else {
-                            const msg = data.on_wishlist
+                            const msg = this.onWishlist
                                 ? 'Problem removing game from your wishlist :('
                                 : 'Problem adding game to your wishlist :(';
                             alert(msg);
