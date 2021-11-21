@@ -28,6 +28,22 @@ class Game extends Model
         return $this->belongsTo(Publisher::class);
     }
 
+    public function getAvgRatingAttribute()
+    {
+        $ratings = [];
+        $avg = 0;
+
+        foreach ($this->gameUser as $gu) {
+            array_push($ratings, $gu->pivot->game_rating);
+        }
+
+        if (count($ratings) > 0) {
+            $avg = array_sum($ratings) / count($ratings);
+        }
+
+        return number_format($avg, 1);
+    }
+
     protected $fillable = [
         'id',
         'title',

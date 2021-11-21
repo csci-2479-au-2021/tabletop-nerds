@@ -45,7 +45,7 @@
         
             <br>
             <h2 class="text-2xl font-extrabold border-b-8 border-purple-900" >Average Rating<h2>
-                <p class="text-xl">6.5</p>
+                <p class="text-xl">{{$game->avg_rating}}</p>
             <br>
             <h2 class="text-2xl font-extrabold border-b-8 border-purple-900">Publisher<h2>
                 <p class="text-xl">Content Content Content</p>
