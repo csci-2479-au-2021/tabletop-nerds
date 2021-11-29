@@ -2,7 +2,6 @@
 
 namespace App\Repositories; 
 use App\Models\Game;
-use App\Models\GameUser;
 use App\Models\ReviewAndWishlist;
 use App\Models\User;
 

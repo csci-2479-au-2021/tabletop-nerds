@@ -4,7 +4,6 @@ namespace App\Repositories;
 use App\Models\Game;
 use Illuminate\Support\Facades\DB;
 use App\Models\Wishlist;
-use App\Models\GameUser;
 use Illuminate\Database\Eloquent\Collection;
 
 class WishlistRepository
