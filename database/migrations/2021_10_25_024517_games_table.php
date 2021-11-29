@@ -22,6 +22,8 @@ class GamesTable extends Migration
             // $table->decimal('complexity_rating', $precision = 3, $scale = 2);
             $table->year('release_year');
             $table->foreignId('publisher_id')->constrained()->nullable();
+            $table->boolean('is_deleted')->default(0)->index();
+            $table->softDeletes('time_deleted');
             // $table->integer('playing_time_minutes');
             // $table->integer('min_number_players');
             // $table->integer('max_number_players');
