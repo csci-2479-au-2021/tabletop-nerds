@@ -26,7 +26,10 @@ class GameRepository
     }
 
     public function getGameById($id)
-    {
+    {   
+        $games = DB::table('games')->find($id);
+        // $games->publisher = DB::table('publishers')->
         return DB::table('games')->find($id);
+
     }
 }
