@@ -9,11 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-blue-600  border-b border-gray-200 grid gap-4">
-                        @foreach($games as $gameInfo)
-                        @php
-                            list($onWishlist, $game) = $gameInfo;
-                        @endphp
-                        <x-game :onWishlist="$onWishlist" :game="$game"></x-game>
+                        @foreach($games as $game)
+                        <x-game :game="$game"></x-game>
                         @endforeach
                 </div>
             </div>

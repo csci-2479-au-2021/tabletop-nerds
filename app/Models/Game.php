@@ -25,6 +25,19 @@ class Game extends Model
         return implode(', ', $catNames);
     }
 
+    public function isOnWishlist(): bool
+    {
+        $userGames = auth()->user()?->userGame;
+        $onWishlist = false;
+        $userGame = $userGames?->where('id', $this->id)->first();
+
+        if ($userGame) {
+            $onWishlist = $userGame->pivot->on_wishlist === 1;
+        }
+
+        return $onWishlist;
+    }
+
     public function gameUser()
     {
         return $this->belongsToMany(User::class)->using(ReviewAndWishlist::class)->withPivot([

@@ -30,13 +30,8 @@ class GameController extends Controller
     public function listGames()
     {
         $games = $this->gameService->getGames();
-        $gamesArray = [];
 
-        foreach ($games as $game) {
-            $gamesArray[] = [$this->isOnWishlist($game), $game];
-        }
-
-        return view('games', ['games' => $gamesArray]);
+        return view('games', ['games' => $games]);
     }
 
     public function gameView($id){
