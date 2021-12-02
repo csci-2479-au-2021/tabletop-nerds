@@ -3,7 +3,7 @@
         <div class="grid grid-cols-6 grid-rows-1"
             @if(auth()->user())
              x-data="game"
-             x-init="setGameInfo({{ $game->id }}, {{ auth()->user()->id }}, {{ json_encode($onWishlist) }})"
+             x-init="setGameInfo({{ $game->id }}, {{ auth()->user()->id }}, {{ json_encode($game->isOnWishlist()) }})"
             @endif
         >
             <h1 class="col-span-5 font-semibold text-4xl text-gray-800 leading-tight">
