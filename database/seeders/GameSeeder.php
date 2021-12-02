@@ -64,7 +64,7 @@ class GameSeeder extends Seeder
 
             $cardCat->games()->attach($splendor->id);
             $advnCat->games()->attach($labyrinth->id);
-            $wargCat->games()->attach($sorry->id);
+            $wargCat->games()->attach([$sorry->id, $concordia->id]);
             $civiCat->games()->attach($concordia->id);
     }
 }

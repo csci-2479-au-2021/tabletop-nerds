@@ -14,7 +14,7 @@ interface Game extends GameProps {
     getButtonText: () => string;
 }
 
-const initGamelist = () => {
+const initWishlistButtons = () => {
     document.addEventListener('alpine:init', () => {
         Alpine.data('game', () => ({
             setGameInfo(gameId: number, userId: number, onWishlist: boolean): void {
@@ -49,5 +49,5 @@ const initGamelist = () => {
 }
 
 export default {
-    initGamelist
+    initWishlistButtons
 }

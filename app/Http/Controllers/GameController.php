@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
+use App\Models\Publisher;
 use App\Services\GameService;
 
 use Illuminate\Http\Request;
@@ -25,35 +27,35 @@ class GameController extends Controller
         ]);
     }
 
-    public function listGames(){
-        $userGames = auth()->user()?->userGame;
+    public function listGames()
+    {
         $games = $this->gameService->getGames();
         $gamesArray = [];
 
         foreach ($games as $game) {
-            $onWishlist = false;
-            $userGame = $userGames?->where('id', $game->id)->first();
-
-            if ($userGame) {
-                $onWishlist = $userGame->pivot->on_wishlist === 1;
-            }
-
-            $gamesArray[] = [$onWishlist, $game];
+            $gamesArray[] = [$this->isOnWishlist($game), $game];
         }
 
         return view('games', ['games' => $gamesArray]);
     }
 
-    
-    
     public function gameView($id){
         $game = $this->gameService->getGameById($id);
-        return view('gameView', compact('game'));
+        $onWishlist = $this->isOnWishlist($game);
 
+        return view('gameView', compact('game', 'onWishlist'));
     }
 
+    private function isOnWishlist(Game $game): bool
+    {
+        $userGames = auth()->user()?->userGame;
+        $onWishlist = false;
+        $userGame = $userGames?->where('id', $game->id)->first();
 
-   
+        if ($userGame) {
+            $onWishlist = $userGame->pivot->on_wishlist === 1;
+        }
 
-
+        return $onWishlist;
+    }
 }

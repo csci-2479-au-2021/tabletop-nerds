@@ -14,6 +14,17 @@ class Game extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function categoryList(): string
+    {
+        $catNames = [];
+
+        foreach ($this->gameCategory as $cat) {
+            array_push($catNames, $cat->name);
+        }
+
+        return implode(', ', $catNames);
+    }
+
     public function gameUser()
     {
         return $this->belongsToMany(User::class)->using(ReviewAndWishlist::class)->withPivot([
@@ -23,7 +34,7 @@ class Game extends Model
         ]);;
     }
 
-    public function gamePublisher()
+    public function publisher()
     {
         return $this->belongsTo(Publisher::class);
     }
