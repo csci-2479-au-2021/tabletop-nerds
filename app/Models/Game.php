@@ -14,6 +14,30 @@ class Game extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function categoryList(): string
+    {
+        $catNames = [];
+
+        foreach ($this->gameCategory as $cat) {
+            array_push($catNames, $cat->name);
+        }
+
+        return implode(', ', $catNames);
+    }
+
+    public function isOnWishlist(): bool
+    {
+        $userGames = auth()->user()?->userGame;
+        $onWishlist = false;
+        $userGame = $userGames?->where('id', $this->id)->first();
+
+        if ($userGame) {
+            $onWishlist = $userGame->pivot->on_wishlist === 1;
+        }
+
+        return $onWishlist;
+    }
+
     public function gameUser()
     {
         return $this->belongsToMany(User::class)->using(ReviewAndWishlist::class)->withPivot([
@@ -23,7 +47,7 @@ class Game extends Model
         ]);;
     }
 
-    public function gamePublisher()
+    public function publisher()
     {
         return $this->belongsTo(Publisher::class);
     }
@@ -33,6 +57,7 @@ class Game extends Model
         'title',
         'description',
         'image',
-        'category_id'
+        'category_id',
+        'average_rating'
     ];
 }

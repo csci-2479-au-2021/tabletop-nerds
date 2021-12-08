@@ -1,7 +1,7 @@
 // example of a function, can be removed
-const helloWorld = (): void => console.log('Hello world!');
+import wishlist from './modules/wishlist';
 
 // export the function
 export default {
-    helloWorld
+    wishlist
 };
