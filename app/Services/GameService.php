@@ -16,6 +16,20 @@ class GameService
     
     public function getGameById($id){
         $game = $this->gameRepository->getGameById($id);
+
+        //Average Game Rating
+        $gameRatings = [];
+        foreach($game->gameUser as $ur)
+        {
+            array_push($gameRatings, $ur->pivot->game_rating);
+        };
+        if(array_sum($gameRatings)== 0){
+            $game->average_rating = "No reviews";
+        }
+        else{
+        $game->average_rating = array_sum($gameRatings)/count($gameRatings);
+        }
+
         return($game);
     }
 
