@@ -2,7 +2,7 @@
     <div
         class="grid grid-cols-7 grid-rows-1 gap-1 rounded-lg border-4 border-gray-200 bg-gray-400 shadow-2xl shadow-inner"
         x-data="game"
-        x-init="setGameInfo({{ $game->id }}, {{ auth()->user()->id }}, {{ json_encode($onWishlist) }})">
+        x-init="setGameInfo({{ $game->id }}, {{ auth()->user()->id }}, {{ json_encode($game->isOnWishlist()) }})">
             <div class="col-span-3">
                 <a href="{{ route('gameView', ['id' => $game->id]) }}"><img class="max-w-xs" src="{{$game->image}}"  alt="{{$game->title}}"></a>
             </div>
