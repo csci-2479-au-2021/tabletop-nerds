@@ -22,7 +22,10 @@ class GameFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->title,
+            'image' => $this->faker->imageUrl,
+            'description' => $this->faker->text,
+            'release_year' => $this->faker->year,
         ];
     }
 }
