@@ -57,11 +57,14 @@
                     <h2 class="text-2xl font-extrabold border-b-8 border-blue-500">Reviews<h2>
 
                     @foreach($game->gameUser as $gu)
-                    <div class="grid col-start-1 col-span-6 gap-6 p-4 rounded-lg border-4">
-                            <h2 class="text-2xl font-extrabold border-b-8 border-blue-500">Rating: {{ $gu->pivot->game_rating }}<h2>
-                            <p class="text-xl">{{$gu->pivot->text_review}}</p>
-                    </div>
-                    <br>
+                        @if ($gu->pivot->text_review !== null)
+                            <div class="grid col-start-1 col-span-6 gap-6 p-4 rounded-lg border-4">
+                                    <h2 class="text-2xl font-extrabold border-b-8 border-blue-500">{{$gu->name}}'s review<h2>
+                                    <p class="text-xl">Rating: {{ $gu->pivot->game_rating }}</p>
+                                    <p class="text-xl">{{$gu->pivot->text_review}}</p>
+                            </div>
+                            <br>
+                        @endif
                     @endforeach
                 </div>
             </div>

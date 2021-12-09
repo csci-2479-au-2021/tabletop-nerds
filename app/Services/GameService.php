@@ -21,13 +21,17 @@ class GameService
         $gameRatings = [];
         foreach($game->gameUser as $ur)
         {
-            array_push($gameRatings, $ur->pivot->game_rating);
+            $rating = $ur->pivot->game_rating;
+
+            if ($rating !== null) {
+                array_push($gameRatings, $ur->pivot->game_rating);
+            }
         };
-        if(array_sum($gameRatings)== 0){
+        if (array_sum($gameRatings)== 0) {
             $game->average_rating = "No reviews";
         }
-        else{
-        $game->average_rating = array_sum($gameRatings)/count($gameRatings);
+        else {
+            $game->average_rating = self::getFormattedRating($gameRatings);
         }
 
         return($game);
@@ -41,5 +45,12 @@ class GameService
     public function searchGamesByTitle (Request $title)
     {    
         return ($this->gameRepository->searchGamesByTitle($title));
+    }
+
+    private static function getFormattedRating(array $ratings): string
+    {
+        $rating = array_sum($ratings) / count($ratings);
+
+        return number_format($rating, 1);
     }
 }
