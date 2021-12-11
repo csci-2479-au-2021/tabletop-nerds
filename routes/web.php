@@ -5,6 +5,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdministrationController;
 use Illuminate\Support\Facades\Route;
 use App\Services\GameService;
 
@@ -38,5 +39,7 @@ Route::get('/YourReview', [UserController::class,'ViewGameReview'])->middleware(
 Route::post('/YourReview', [UserController::class, 'SubmitGameRating'])->middleware(['auth'])->name('userGameRating');
 Route::post('/wishlist/add', [WishlistController::class, 'AddToWishlist'])->middleware(['auth'])->name('addToWishlist');
 Route::post('/wishlist/remove', [WishlistController::class, 'RemoveFromWishlist'])->middleware(['auth'])->name('removeFromWishlist');
+
+Route::get('/admin', [AdministrationController::class, 'adminView'])->middleware(['auth'])->name('AdminView');
 
 require __DIR__.'/auth.php';
