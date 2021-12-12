@@ -10,11 +10,15 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h3 class="text-5xl font-bold">Welcome, Admin! </h3>
+                    <br>
                     <table class="table-fixed border-collapse border-green-800">
                         <tr>
                             <th class="w-1/4 border border-green-600">Game Image</th> 
                             <th class="w-1/4 border border-green-600">Game Title</th> 
                             <th class="w-1/4 border border-green-600">Game Description</th>
+                            <th class="w-1/4 border border-green-600"> Publisher </th>
+                            <th class="w-1/4 border border-green-600"> Release Year </th>
+                            <th class="w-1/4 border border-green-600"> Categories </th>
                             <th class="w-1/4 border border-green-600">Remove Game From Database</th> 
                         </tr>
                         @foreach($games as $game) 
@@ -24,14 +28,12 @@
                             </td>
                             <td class="text-center  border border-green-600">{{$game->title}}</td>
                             <td class="text-center border border-green-600">{{$game->description}}</td>
-                            <td class="text-center border border-green-600">
-                                <form method="post" action="{{ route('removeFromWishlist') }}">
-                                @csrf
-                                <input hidden value="{{$game->game_id}}" name="game_id"> </input>
-                                <input hidden value="{{$game->user_id}}" name="user_id"> </input>
-                                <input hidden value="0" name ="on_wishlist"></input>
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" type="submit"> Remove From Wishlist</button>
-                                </form>
+                            <td class="text-center border border-green-600"> {{$game->publisher->name}}</td>
+                            <td class="text-center border border-green-600">{{$game->release_year}}</td>
+                            <td class="text-center border border-green-600"> 
+                                @foreach($game->gameCategory as $cat)
+                                {{$cat->name}}
+                                @endforeach
                             </td>
                         </tr>
                         @endforeach
