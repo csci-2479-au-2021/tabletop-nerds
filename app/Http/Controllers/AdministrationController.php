@@ -4,40 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Publisher;
-use App\Services\GameService;
+use App\Services\AdministrationService;
 
 use Illuminate\Http\Request;
 
 class AdministrationController extends Controller
 {
-    private GameService $gameService;
+    private AdministrationService $administrationService;
     
-    public function __construct(GameService $gameService)
+    public function __construct(AdministrationService $administrationService)
     {
-        $this->gameService = $gameService;
+        $this->administrationService = $administrationService;
     }
         
-
-    
-
     public function adminView(){
-        $games = $this->gameService->getGames();
+        $games = $this->administrationService->getGames();
         return view('admin', ['games' => $games]);
     }
-
     
-    
-    public function gameView($id){
-        $game = $this->gameService->getGameById($id);
-        $onWishlist = $this->isOnWishlist($game);
-        return view('gameView', compact('game', 'onWishlist'));
+    public function updateGame($id){
+        $game = $this->administrationService->getGameById($id);
+        return view('updateGame', compact('game'));
 
     }
 
-    
-
-
-   
-
+    public function activateDeactivateGame($id){
+        $game = $this->administrationService->activateDeactivateGame($id);
+        return redirect()->route('AdminView');
+    }
 
 }

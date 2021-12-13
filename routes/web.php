@@ -42,4 +42,7 @@ Route::post('/wishlist/remove', [WishlistController::class, 'RemoveFromWishlist'
 
 Route::get('/admin', [AdministrationController::class, 'adminView'])->middleware(['auth'])->name('AdminView');
 
+Route::get('/admin/update/{id}', [AdministrationController::class, 'updateGame'])->middleware(['auth'])->name('UpdateGame');
+Route::get('/admin/deactivate/{id}', [AdministrationController::class, 'activateDeactivateGame'])->middleware(['auth'])->name('ActivateDeactivate');
+
 require __DIR__.'/auth.php';

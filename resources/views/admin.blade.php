@@ -13,19 +13,20 @@
                     <br>
                     <table class="table-fixed border-collapse border-green-800">
                         <tr>
-                            <th class="w-1/4 border border-green-600">Game Image</th> 
+                            <!-- <th class="w-1/4 border border-green-600">Game Image</th>  -->
                             <th class="w-1/4 border border-green-600">Game Title</th> 
                             <th class="w-1/4 border border-green-600">Game Description</th>
                             <th class="w-1/4 border border-green-600"> Publisher </th>
                             <th class="w-1/4 border border-green-600"> Release Year </th>
                             <th class="w-1/4 border border-green-600"> Categories </th>
-                            <th class="w-1/4 border border-green-600">Remove Game From Database</th> 
+                            <th class="w-1/4 border border-green-600"> Game Status </th>
+                            <th class="w-1/4 border border-green-600">Update/Delete</th> 
                         </tr>
                         @foreach($games as $game) 
                         <tr>
-                            <td class="content-center border border-green-600">
+                            <!-- <td class="content-center border border-green-600">
                             <a href="{{ route('gameView', ['id' => $game->id]) }}"><img src="{{$game->image}}"  alt="{{$game->title}}"></a>
-                            </td>
+                            </td> -->
                             <td class="text-center  border border-green-600">{{$game->title}}</td>
                             <td class="text-center border border-green-600">{{$game->description}}</td>
                             <td class="text-center border border-green-600"> {{$game->publisher->name}}</td>
@@ -35,6 +36,19 @@
                                 {{$cat->name}}
                                 @endforeach
                             </td>
+                            @if($game->is_deleted == 0)
+                            <td class="text-center border border-green-600"> Active </td>
+                            <td class="text-center border border-green-600"> 
+                            <a href="{{ route('UpdateGame', ['id' => $game->id]) }}">Update</a>/
+                            <a href="{{ route('ActivateDeactivate', ['id' => $game->id]) }}">Delete</a>
+                            <td>
+                            @else
+                            <td class="text-center border border-green-600"> Deleted </td>
+                            <td class="text-center border border-green-600"> 
+                            <a href="{{ route('UpdateGame', ['id' => $game->id]) }}">Update</a>/
+                            <a href="{{ route('ActivateDeactivate', ['id' => $game->id]) }}">Reactivate</a>
+                            <td>
+                            @endif
                         </tr>
                         @endforeach
                     </table>    

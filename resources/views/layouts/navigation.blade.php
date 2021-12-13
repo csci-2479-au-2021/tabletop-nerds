@@ -62,6 +62,11 @@
                             {{ __('Wishlist') }}
                         </x-dropdown-link>
                         
+                        <x-dropdown-link :href="route('AdminView')" 
+                                :active="request()->routeIs('AdminView')">
+                            {{ __('Admin') }}
+                        </x-dropdown-link>
+                        
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
@@ -139,6 +144,12 @@
                         </x-dropdown-link>
                         
                 <!-- Authentication -->
+
+                <x-dropdown-link :href="route('AdminView')" 
+                                :active="request()->routeIs('AdminView')">
+                            {{ __('Admin') }}
+                        </x-dropdown-link>
+
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 

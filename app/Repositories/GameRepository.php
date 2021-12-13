@@ -29,4 +29,14 @@ class GameRepository
     {
         return Game::find($id);
     }
+
+    public function activateDeactivateGame($id){
+        $game = Game::find($id);
+        if($game->is_deleted == 0){
+            DB::table('games')->where('id',$id)->update(['is_deleted'=>1]);
+        }
+        else{
+            DB::table('games')->where('id',$id)->update(['is_deleted'=>0]);
+        }
+    }
 }
