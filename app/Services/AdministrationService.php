@@ -16,24 +16,6 @@ class AdministrationService
     
     public function getGameById($id){
         $game = $this->gameRepository->getGameById($id);
-
-        //Average Game Rating
-        $gameRatings = [];
-        foreach($game->gameUser as $ur)
-        {
-            $rating = $ur->pivot->game_rating;
-
-            if ($rating !== null) {
-                array_push($gameRatings, $ur->pivot->game_rating);
-            }
-        };
-        if (array_sum($gameRatings)== 0) {
-            $game->average_rating = "No reviews";
-        }
-        else {
-            $game->average_rating = self::getFormattedRating($gameRatings);
-        }
-
         return($game);
     }
 
@@ -42,9 +24,28 @@ class AdministrationService
         return ($this->gameRepository->getGames());
     }
 
+    public function getPublishers()
+    {   
+        return ($this->gameRepository->getPublishers());
+    }
+
+    public function getCategories()
+    {   
+        return ($this->gameRepository->getCategories());
+    }
+
     public function activateDeactivateGame ($id)
     {    
         $this->gameRepository->activateDeactivateGame($id);
+    }
+
+    public function updateGame(int $game_id, string $title, int $publisher, array $category, int $release_year, string $description){
+        $this->gameRepository->updateGame($game_id, $title, $publisher, $category, $release_year, $description);
+    }
+
+    public function addGame(string $title, int $publisher, array $category, int $release_year, string $description){
+        $image = null;
+        $this->gameRepository->addGame($title, $image, $publisher, $category, $release_year, $description);
     }
 
 }

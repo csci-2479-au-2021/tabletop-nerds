@@ -18,7 +18,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CategorySeeder::class,
             PublisherSeeder::class,
-            GameSeeder::class
+            GameSeeder::class,
+            RoleSeeder::class,
+            PermissionSeeder::class,
         ]);
+
+        \App\Models\User::factory(1)->create();
     }
 }

@@ -4,60 +4,50 @@
         <div class="grid grid-cols-6 grid-rows-1 ">
            
             <h1 class="col-span-5 font-extrabold text-6xl text-yellow-500 leading-tight">
-                {{ __($game->title) }}
+                 Update Game Details
             </h1>
         </div>
     </x-slot> 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="grid grid-cols-6 grid-rows-1 gap-1 p-2 shadow-2xl rounded-lg border-4">
-                <h1> Update Game Details </h1>
-                <div class="col-start-3 col-span-4 row-start-1 row-span-1 p-2 text-center shadow-2xl rounded-lg border-4 border-green-200">    
-                    
-                    <br>
-                    <div class="grid grid-cols-7 grid-rows-2 gap-1">
-                        <h2 class="col-span-7 text-2xl font-extrabold border-b-8 border-purple-900" >Average Rating<h2>
-                        <h2 class="col-start-4 row-start-2 text-xl col-span-1">{{$game->average_rating}}</h2>
-                        <a class="col-start-6 row-start-2 col-span-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded" href="{{ route('addGameRating', ['id' => $game->id]) }}">Submit a Review</a> 
-                    </div>
-                    <br>
-                    <h2 class="text-2xl font-extrabold border-b-8 border-purple-900">Publisher<h2>
-                        <p class="text-xl">{{$game->publisher->name}}</p>
-                    <br>
-                    <h2 class="text-2xl font-extrabold border-b-8 border-blue-500">Release Year</h2> 
-                        <p class="text-xl">{{$game->release_year}}<p>
-                    <br>
-                    <h2 class="text-2xl font-extrabold border-b-8 border-blue-500">Category(ies)<h2>
-                        <p class="text-xl">
-                            @foreach($game->gameCategory as $cat)
-                                <span>{{$cat->name}}</span>
+            <div>
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <legend class="border-2 border-indigo-600">
+                        <form class="text-center" method='post' action="{{ route('PostUpdateGame') }}">
+                            @csrf
+                            <input type="text" value ="{{$game->id}}" name="game_id" hidden><br><br>
+                            <label class="font-extrabold" >Title</label><br>
+                            <input type="text" value ="{{$game->title}}" name="title" required><br><br>
+                            <label class="font-extrabold" >Publisher</label><br>
+                            <select name="publisher">
+                                <option value="">Publisher</option>
+                                @foreach ($publishers as $key => $value)
+                                    <option value ="{{$value->id}}"> {{$value->name}}</option>
+                                @endforeach
+                            </select>
+                            <br><br>
+                            <label class="font-extrabold" >Categories</label><br>
+                            @foreach ($categories as $key => $value)
+                                @if(in_array($value->name, $gameCategories))
+                                <input type="checkbox" name="category[{{$key}}]" value="{{$value->id}}" checked>
+                                <label for="vehicle1"> {{$value->name}}</label><br>
+
+                                @else
+                                <input type="checkbox" name="category[{{$key}}]" value="{{$value->id}}">
+                                <label for="vehicle1"> {{$value->name}}</label><br>
+                                @endif
                             @endforeach
-                        </p>  
-                </div>
-
-                <div class="grid col-start-1 col-span-6 gap-6 p-4 shadow-2xl rounded-lg border-4">
-                    <h2 class="text-2xl font-extrabold border-b-8 border-purple-900">Description<h2>
-                        <p class="text-xl">{{$game->description}}</p>
-                </div>
-
-                <div class="grid col-start-1 col-span-6 gap-6 p-4 shadow-2xl rounded-lg border-4">
-                    <h2 class="text-2xl font-extrabold border-b-8 border-blue-500">Reviews<h2>
-
-                    @foreach($game->gameUser as $gu)
-                        @if ($gu->pivot->text_review !== null)
-                            <div class="grid col-start-1 col-span-6 gap-6 p-4 rounded-lg border-4">
-                                    <h2 class="text-2xl font-extrabold border-b-8 border-blue-500">{{$gu->name}}'s review<h2>
-                                    <p class="text-xl">Rating: {{ $gu->pivot->game_rating }}</p>
-                                    <p class="text-xl">{{$gu->pivot->text_review}}</p>
-                            </div>
-                            <br>
-                        @endif
-                    @endforeach
+                            <br><br>
+                            <label class="font-extrabold" >Release Year</label><br>
+                            <input type="text" value ="{{$game->release_year}}" name="release_year" required><br><br>
+                            <label class="font-extrabold" >Description</label><br>
+                            <textarea name="description" rows="5" columns="10"required>{{$game->description}}</textarea><br><br><br>
+                            <a style ="padding:.5%;" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" href="{{route('AdminView')}}"> Cancel</a>
+                            <button style ="padding:.5%;" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded" type="submit"> Update Game</button><br><br><br>
+                        <form>
+                    </legend>
                 </div>
             </div>
         </div>
     </div>
-
-    
-
 </x-app-layout>
