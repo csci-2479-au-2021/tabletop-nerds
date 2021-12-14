@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePermissionsTable extends Migration
+class CreateRolesPermissionsTables extends Migration
 {
     /**
      * Run the migrations.
@@ -46,7 +46,7 @@ class CreatePermissionsTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropForeign('users_role_id_foreign');
         });
-        
+
         Schema::dropIfExists('permission_role');
         Schema::dropIfExists('roles');
         Schema::dropIfExists('permissions');
