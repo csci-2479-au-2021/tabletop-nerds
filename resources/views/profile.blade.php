@@ -11,7 +11,8 @@
                 <div style="text-align:center;"class="p-6 bg-white border-b border-gray-200">
                     User ID: {{ $userId }}</br>
                     Name: {{ $userName }}</br>
-                    Email: {{ $userEmail }}
+                    Email: {{ $userEmail }}</br>
+                    You're logged in as a(n) {{$role}}!
                 </div>
             </div>
         </div>
