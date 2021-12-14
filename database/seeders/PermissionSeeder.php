@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class PermissionSeeder extends Seeder
@@ -25,7 +27,7 @@ class PermissionSeeder extends Seeder
         ]);
 
         $admin = Role::where('name', 'admin')->first();
-        $admin->permissions()->attach([$gametRead->id, $gameWrite->id]);
+        $admin->permissions()->attach([$gameRead->id, $gameWrite->id]);
         Role::where('name', 'user')->first()->permissions()->attach($gameRead);
     }
 }

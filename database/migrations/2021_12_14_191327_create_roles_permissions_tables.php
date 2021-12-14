@@ -46,7 +46,6 @@ class CreateRolesPermissionsTables extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropForeign('users_role_id_foreign');
         });
-
         Schema::dropIfExists('permission_role');
         Schema::dropIfExists('roles');
         Schema::dropIfExists('permissions');
