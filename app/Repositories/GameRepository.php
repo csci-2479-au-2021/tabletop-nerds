@@ -52,7 +52,7 @@ class GameRepository
         }
     }
 
-    public function addGame(string $title, $image = null, int $publisher, array $category, int $release_year, string $description){
+    public function addGame(string $title, int $publisher, array $category, int $release_year, string $description, $image = null){
         $message;
         $timestamp = date("Y-m-d H:i:s");
         $alreadyExists = Game::firstWhere('title',$title);
