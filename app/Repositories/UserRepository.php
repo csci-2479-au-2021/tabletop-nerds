@@ -36,6 +36,11 @@ class UserRepository
         return $user->userGame->where('id', $game_id)->first()->pivot;
     }
 
+    public function makeMeAAdmin(int $user_id){
+        $timestamp = date("Y-m-d H:i:s");
+        DB::table('users')->where('id',$user_id)->update(['role_id'=>1, 'updated_at'=>$timestamp]);
+    }
+
     private static function gameAlreadyThere(int $gameId, int $userId): bool
     {
         return ReviewAndWishlist::where('game_id', $gameId)

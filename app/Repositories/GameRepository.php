@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Game;
+use App\Models\Category;
+use App\Models\Publisher;
 use App\Models\User;
 use App\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,6 +16,11 @@ class GameRepository
     // in reality this class will utilize Eloquent models to query the DB
 
     public function getGames(): Collection
+    {
+        return Game::where('is_deleted',0)->orderBy('title')->get();
+    }
+
+    public function getGamesAdmin(): Collection
     {
         return Game::orderBy('title')->get();
     }
@@ -29,4 +36,68 @@ class GameRepository
     {
         return Game::find($id);
     }
+
+    public function activateDeactivateGame($id){
+        $game = Game::find($id);
+        $timestamp = date("Y-m-d H:i:s");
+        if($game->is_deleted == 0){
+            DB::table('games')->where('id',$id)->update(['is_deleted'=>1, 'time_deleted'=>$timestamp]);
+        }
+        else{
+            DB::table('games')->where('id',$id)->update(['is_deleted'=>0, 'time_deleted'=>null]);
+        }
+    }
+
+    public function updateGame (int $game_id, string $title, int $publisher, array $category, int $release_year, string $description){
+        $message;
+        $alreadyExists = Game::firstWhere('title',$title);
+        $timestamp = date("Y-m-d H:i:s");
+        if($alreadyExists == null || $alreadyExists->id == $game_id){
+            DB::table('games')->where('id',$game_id)->update(['title'=>$title, 'description'=>$description, 'updated_at'=>$timestamp, 'release_year'=>$release_year,'publisher_id'=>$publisher]);
+            DB::table('category_game')->where('game_id',$game_id)->delete();
+            foreach($category as $value){
+                DB::insert('insert into category_game(game_id,category_id) values (?,?)',[$game_id, $value]);
+            }
+            $message ="Game successfully added to database";
+            return $message;
+        }
+        else{
+            return $message = "This game title already exists in the database";
+        }
+    }
+
+    public function addGame(string $title, int $publisher, array $category, int $release_year, string $description, $image = null){
+        $message;
+        $timestamp = date("Y-m-d H:i:s");
+
+        $alreadyExists = Game::firstWhere('title',$title);
+        if($alreadyExists == null){
+            DB::insert('insert into games (title, image, description, created_at, updated_at, release_year, publisher_id, is_deleted) values (?,?,?,?,?,?,?,?)',
+            [$title, $image, $description, $timestamp, $timestamp, $release_year, $publisher, 0]);
+            $game = Game::firstWhere('title',$title);
+            foreach($category as $value){
+                DB::insert('insert into category_game(game_id,category_id) values (?,?)',[$game->id, $value]);
+            }
+            $message ="Game successfully added to database";
+            return $message;
+    }
+        else{
+            $message = "This game title already exists in the database";
+            return $message;
+        }
+    }
+
+    public function getPublishers(): Collection
+    {
+        return Publisher::orderBy('name')->get();
+    }
+
+    public function getCategories(): Collection
+    {
+        return Category::orderBy('name')->get();
+    }
+
+    
+
+
 }

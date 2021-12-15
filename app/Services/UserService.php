@@ -21,4 +21,8 @@ class UserService
     {
         return $this->userRepository->upsertGameReview($game_id, $user_id, $game_rating, $text_review);
     }
+
+    public function makeMeAAdmin(int $user_id){
+        return $this->userRepository->makeMeAAdmin($user_id);
+    }
 }

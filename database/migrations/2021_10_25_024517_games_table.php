@@ -16,7 +16,7 @@ class GamesTable extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->text('description');
             $table->timestamps();
             // $table->decimal('complexity_rating', $precision = 3, $scale = 2);
