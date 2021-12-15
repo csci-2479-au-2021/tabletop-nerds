@@ -5,6 +5,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdministrationController;
 use Illuminate\Support\Facades\Route;
 use App\Services\GameService;
 
@@ -38,5 +39,20 @@ Route::get('/YourReview', [UserController::class,'ViewGameReview'])->middleware(
 Route::post('/YourReview', [UserController::class, 'SubmitGameRating'])->middleware(['auth'])->name('userGameRating');
 Route::post('/wishlist/add', [WishlistController::class, 'AddToWishlist'])->middleware(['auth'])->name('addToWishlist');
 Route::post('/wishlist/remove', [WishlistController::class, 'RemoveFromWishlist'])->middleware(['auth'])->name('removeFromWishlist');
+
+//Administration Routes
+Route::get('/MakeMeAdmin', [UserController::class, 'makeMeAAdmin'])->middleware(['auth'])->name('makeMeAAdmin');
+Route::get('/accessdenied', [HomeController::class, 'accessDenied'])->name('AccessDenied');
+Route::get('/admin', [AdministrationController::class, 'adminView'])->middleware(['admin'])->name('AdminView');
+
+Route::get('/admin/deactivate/{id}', [AdministrationController::class, 'activateDeactivateGame'])->middleware(['admin'])->name('ActivateDeactivate');
+
+Route::get('/admin/update/{id}', [AdministrationController::class, 'updateGame'])->middleware(['admin'])->name('UpdateGame');
+Route::post('/admin/update', [AdministrationController::class, 'postUpdateGame'])->middleware(['admin'])->name('PostUpdateGame');
+
+Route::get('/admin/AddGame', [AdministrationController::class, 'addGame'])->middleware(['admin'])->name('AddGame');
+Route::post('/admin/AddGame', [AdministrationController::class, 'postAddGame'])->middleware(['admin'])->name('PostAddGame');
+
+
 
 require __DIR__.'/auth.php';

@@ -52,4 +52,10 @@ class UserController extends Controller
         return view('YourReview',  compact('userReview'));
     }
 
+    public function makeMeAAdmin(){
+        $user_id = Auth::user()->id;
+        $makeMeAdmin = $this->userService->makeMeAAdmin($user_id);
+        return redirect()->route('AdminView');
+    }
+
 }

@@ -4,7 +4,7 @@
             {{ __('Games') }}
         </h2>
     </x-slot>
-
+    
     <div class="grid grid-cols-7 grid-rows-1 gap-6 rounded-lg border-4 border-blue-100 bg-blue-50">
         <div class="col-start-2 col-span-1 p-1 place-items-center">
             <a class="text-2xl text-blue-800 font-bold">Title</a>
