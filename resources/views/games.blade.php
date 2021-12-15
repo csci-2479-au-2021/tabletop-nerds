@@ -48,17 +48,12 @@
                 <a class="text-1xl text-blue-800 font-semibold">{{$game->publisher->name}}</a>
             </div>
             <div class="col-span-1 place-items-center">
+                <br><br>
                 @foreach($game->gameUser as $gu)
                     @if ($gu->pivot->text_review !== null)
-                        <div class="col-span-1 place-items-center">
-                            <br><br>
-                                <a class="text-1xl text-blue-800 font-semibold">{{ $gu->pivot->game_rating }}</a>
-                        </div>
+                            <a class="text-1xl text-blue-800 font-semibold">{{ $gu->pivot->game_rating }}</a>
                     @else
-                        <div class="col-span-1 place-items-center">
-                            <br><br>
-                                <a class="text-1xl text-blue-800 font-semibold">Not Rated</a>
-                        </div>
+                            <a class="text-1xl text-blue-800 font-semibold">Not Rated</a>
                     @endif
                 @endforeach
             </div>
@@ -95,17 +90,12 @@ x-data="game">
         <a class="text-1xl text-purple-800 font-semibold">{{$game->publisher->name}}</a>
     </div>
     <div class="col-span-1 place-items-center">
+        <br><br>
         @foreach($game->gameUser as $gu)
             @if ($gu->pivot->text_review !== null)
-                <div class="col-span-1 place-items-center">
-                    <br><br>
-                        <a class="text-1xl text-purple-800 font-semibold">{{ $gu->pivot->game_rating }}</a>
-                </div>
+                <a class="text-1xl text-purple-800 font-semibold">{{ $gu->pivot->game_rating }}</a>
             @else
-                <div class="col-span-1 place-items-center">
-                    <br><br>
-                        <a class="text-1xl text-purple-800 font-semibold">Not Rated</a>
-                </div>
+                <a class="text-1xl text-purple-800 font-semibold">Not Rated</a>
             @endif
         @endforeach
     </div>
