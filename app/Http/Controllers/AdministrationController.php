@@ -68,7 +68,7 @@ class AdministrationController extends Controller
             $validatedInput['category'],
             $validatedInput['release_year'],
             $validatedInput['description']);    
-        return redirect()->route('AdminView');
+        return redirect()->route('AdminView', 'updateGameInfo');
     }
 
     

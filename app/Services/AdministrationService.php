@@ -21,7 +21,7 @@ class AdministrationService
 
     public function getGames($orderby = null, $direction = null, $limit= null)
     {   
-        return ($this->gameRepository->getGames());
+        return ($this->gameRepository->getGamesAdmin());
     }
 
     public function getPublishers()
@@ -45,7 +45,7 @@ class AdministrationService
 
     public function addGame(string $title, int $publisher, array $category, int $release_year, string $description){
         $image = null;
-        $this->gameRepository->addGame($title, $image, $publisher, $category, $release_year, $description);
+        $this->gameRepository->addGame($title, $publisher, $category, $release_year, $description, $image);
     }
 
 }

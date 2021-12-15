@@ -20,9 +20,12 @@
                             <input type="text" value ="{{$game->title}}" name="title" required><br><br>
                             <label class="font-extrabold" >Publisher</label><br>
                             <select name="publisher">
-                                <option value="">Publisher</option>
                                 @foreach ($publishers as $key => $value)
+                                    @if($value->id == $game->publisher_id)
+                                    <option value ="{{$value->id}}" selected> {{$value->name}}</option>
+                                    @else
                                     <option value ="{{$value->id}}"> {{$value->name}}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             <br><br>

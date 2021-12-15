@@ -41,15 +41,16 @@ Route::post('/wishlist/add', [WishlistController::class, 'AddToWishlist'])->midd
 Route::post('/wishlist/remove', [WishlistController::class, 'RemoveFromWishlist'])->middleware(['auth'])->name('removeFromWishlist');
 
 //Administration Routes
-Route::get('/admin', [AdministrationController::class, 'adminView'])->middleware(['auth'])->name('AdminView');
+Route::get('/accessdenied', [HomeController::class, 'accessDenied'])->name('AccessDenied');
+Route::get('/admin', [AdministrationController::class, 'adminView'])->middleware(['admin'])->name('AdminView');
 
-Route::get('/admin/deactivate/{id}', [AdministrationController::class, 'activateDeactivateGame'])->middleware(['auth'])->name('ActivateDeactivate');
+Route::get('/admin/deactivate/{id}', [AdministrationController::class, 'activateDeactivateGame'])->middleware(['admin'])->name('ActivateDeactivate');
 
-Route::get('/admin/update/{id}', [AdministrationController::class, 'updateGame'])->middleware(['auth'])->name('UpdateGame');
-Route::post('/admin/update', [AdministrationController::class, 'postUpdateGame'])->middleware(['auth'])->name('PostUpdateGame');
+Route::get('/admin/update/{id}', [AdministrationController::class, 'updateGame'])->middleware(['admin'])->name('UpdateGame');
+Route::post('/admin/update', [AdministrationController::class, 'postUpdateGame'])->middleware(['admin'])->name('PostUpdateGame');
 
-Route::get('/admin/AddGame', [AdministrationController::class, 'addGame'])->middleware(['auth'])->name('AddGame');
-Route::post('/admin/AddGame', [AdministrationController::class, 'postAddGame'])->middleware(['auth'])->name('PostAddGame');
+Route::get('/admin/AddGame', [AdministrationController::class, 'addGame'])->middleware(['admin'])->name('AddGame');
+Route::post('/admin/AddGame', [AdministrationController::class, 'postAddGame'])->middleware(['admin'])->name('PostAddGame');
 
 
 

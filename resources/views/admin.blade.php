@@ -10,24 +10,25 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h1 class="text-2xl font-bold">Welcome Admin, </h3>
-                    <br>
-                    <h3> Use these links and tables to manage the content of TableTop-Nerds.</h3>
+                    <h3 class="mt-1"> Use these links and tables to manage the content of TableTop-Nerds.</h3>
                     <br>
                     <br>
                     <h1 class="text-2xl font-bold">Add Games/Publishers/Categories </h1>
                     <x-responsive-nav-link :href="route('AddGame')" :active="request()->routeIs('AddGame')">
                     {{ __('Add Game') }}
                     </x-responsive-nav-link>
-                    <x-responsive-nav-link :href="route('wishlist')" :active="request()->routeIs('wishlist')">
+                    <!-- <x-responsive-nav-link :href="route('wishlist')" :active="request()->routeIs('wishlist')">
                     {{ __('Add Category') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('wishlist')" :active="request()->routeIs('wishlist')">
                     {{ __('Add Publisher') }}
-                    </x-responsive-nav-link>
+                    </x-responsive-nav-link> -->
                     <br>
                     <br>
 
                     <h1 class="text-2xl font-bold">Current Game List</h1>
+                    <br>
+                    <p>{{$updateGameInfo ?? ''}} </p>
                     <table class="table-fixed border-collapse border-green-800">
                         <tr>
                             <!-- <th class="w-1/4 border border-green-600">Game Image</th>  -->
