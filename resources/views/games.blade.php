@@ -5,41 +5,59 @@
         </h2>
     </x-slot>
 
+    <div class="grid grid-cols-7 grid-rows-1 gap-6 rounded-lg border-4 border-blue-100 bg-blue-50">
+        <div class="col-start-2 col-span-1 p-1 place-items-center">
+            <a class="text-2xl text-blue-800 font-bold">Title</a>
+        </div>
+        <div class="col-start-3 col-span-1 p-1 place-items-center">
+            <a class="text-2xl text-blue-800 font-bold">Release Year</a>
+        </div>
+        <div class="col-start-4 col-span-1 p-1 place-items-center">
+            <a class="text-2xl text-blue-800 font-bold">Category</a>
+        </div>
+        <div class="col-start-5 col-span-1 p-1 place-items-center">
+            <a class="text-2xl text-blue-800 font-bold">Publisher</a>
+        </div>
+        <div class="col-start-6 col-span-1 p-1 place-items-center">
+            <a class="text-2xl text-blue-800 font-bold">Avg Rating</a>
+        </div>
+    </div>
+
     @foreach($games as $game)
     @if(auth()->user())
     <div
-        class="grid grid-cols-7 grid-rows-1 gap-1 rounded-lg border-4 border-gray-200 bg-gray-400 shadow-2xl shadow-inner"
+        class="grid grid-cols-7 grid-rows-1 gap-6 rounded-lg border-4 border-blue-600 bg-blue-100 shadow-2xl shadow-inner"
         x-data="game">
             <div class="col-span-1">
                 <a href="{{ route('gameView', ['id' => $game->id]) }}"><img class="max-w-fit" src="{{$game->image}}"  alt="{{$game->title}}"></a>
             </div>
             <div class="col-span-1 place-items-center">
                 <br><br>
-                <a class="text-2xl text-white font-semibold" href="{{ route('gameView', ['id' => $game->id]) }}">{{$game->title}}</a>
+                <a class="text-2xl text-blue-800 font-semibold" href="{{ route('gameView', ['id' => $game->id]) }}">{{$game->title}}</a>
             </div>
             <div class="col-span-1 place-items-center">
                 <br><br>
-                <a class="text-1xl text-white font-semibold">{{$game->release_year}}</a>
+                <a class="text-1xl text-blue-800 font-semibold">{{$game->release_year}}</a>
             </div>
             <div class="col-span-1 place-items-center">
                 <br><br>
-                <a class="text-1xl text-white font-semibold">{{$game->categoryList()}}</a>
+                <a class="text-1xl text-blue-800 font-semibold">{{$game->categoryList()}}</a>
             </div>
             <div class="col-span-1 place-items-center">
                 <br><br>
-                <a class="text-1xl text-white font-semibold">{{$game->publisher->name}}</a>
+                <a class="text-1xl text-blue-800 font-semibold">{{$game->publisher->name}}</a>
             </div>
             <div class="col-span-1 place-items-center">
                 @foreach($game->gameUser as $gu)
                     @if ($gu->pivot->text_review !== null)
                         <div class="col-span-1 place-items-center">
                             <br><br>
-                                <a class="text-1xl text-white font-semibold">Rating: {{ $gu->pivot->game_rating }}</a>
+                                <a class="text-1xl text-blue-800 font-semibold">{{ $gu->pivot->game_rating }}</a>
                         </div>
                     @else
                         <div class="col-span-1 place-items-center">
                             <br><br>
-                                <a class="text-1xl text-white font-semibold">Not Rated</a>
+                                <a class="text-1xl text-blue-800 font-semibold">Not Rated</a>
                         </div>
                     @endif
                 @endforeach
@@ -55,38 +73,38 @@
     </div>
 @else
 <div
-class="grid grid-cols-7 grid-rows-1 gap-1 rounded-lg border-4 border-gray-200 bg-gray-400 shadow-2xl shadow-inner"
+class="grid grid-cols-7 grid-rows-1 gap-6 rounded-lg border-4 border-purple-600 bg-purple-100 shadow-2xl shadow-inner"
 x-data="game">
     <div class="col-span-1">
         <a href="{{ route('gameView', ['id' => $game->id]) }}"><img class="max-w-fit" src="{{$game->image}}"  alt="{{$game->title}}"></a>
     </div>
     <div class="col-span-1 place-items-center">
         <br><br>
-        <a class="text-2xl text-white font-semibold" href="{{ route('gameView', ['id' => $game->id]) }}">{{$game->title}}</a>
+        <a class="text-2xl text-purple-800 font-semibold" href="{{ route('gameView', ['id' => $game->id]) }}">{{$game->title}}</a>
     </div>
     <div class="col-span-1 place-items-center">
         <br><br>
-        <a class="text-1xl text-white font-semibold">{{$game->release_year}}</a>
+        <a class="text-1xl text-purple-800 font-semibold">{{$game->release_year}}</a>
     </div>
     <div class="col-span-1 place-items-center">
         <br><br>
-        <a class="text-1xl text-white font-semibold">{{$game->categoryList()}}</a>
+        <a class="text-1xl text-purple-800 font-semibold">{{$game->categoryList()}}</a>
     </div>
     <div class="col-span-1 place-items-center">
         <br><br>
-        <a class="text-1xl text-white font-semibold">{{$game->publisher->name}}</a>
+        <a class="text-1xl text-purple-800 font-semibold">{{$game->publisher->name}}</a>
     </div>
     <div class="col-span-1 place-items-center">
         @foreach($game->gameUser as $gu)
             @if ($gu->pivot->text_review !== null)
                 <div class="col-span-1 place-items-center">
                     <br><br>
-                        <a class="text-1xl text-white font-semibold">Rating: {{ $gu->pivot->game_rating }}</a>
+                        <a class="text-1xl text-purple-800 font-semibold">{{ $gu->pivot->game_rating }}</a>
                 </div>
             @else
                 <div class="col-span-1 place-items-center">
                     <br><br>
-                        <a class="text-1xl text-white font-semibold">Not Rated</a>
+                        <a class="text-1xl text-purple-800 font-semibold">Not Rated</a>
                 </div>
             @endif
         @endforeach
