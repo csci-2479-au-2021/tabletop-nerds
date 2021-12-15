@@ -27,7 +27,8 @@
     @if(auth()->user())
     <div
         class="grid grid-cols-7 grid-rows-1 gap-6 rounded-lg border-4 border-blue-600 bg-blue-100 shadow-2xl shadow-inner"
-        x-data="game">
+        x-data="game"
+        x-init="setGameInfo({{ $game->id }}, {{ auth()->user()->id }}, {{ json_encode($game->isOnWishlist()) }})">
             <div class="col-span-1">
                 <a href="{{ route('gameView', ['id' => $game->id]) }}"><img class="max-w-fit" src="{{$game->image}}"  alt="{{$game->title}}"></a>
             </div>
