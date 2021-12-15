@@ -41,6 +41,7 @@ Route::post('/wishlist/add', [WishlistController::class, 'AddToWishlist'])->midd
 Route::post('/wishlist/remove', [WishlistController::class, 'RemoveFromWishlist'])->middleware(['auth'])->name('removeFromWishlist');
 
 //Administration Routes
+Route::get('/MakeMeAdmin', [UserController::class, 'makeMeAAdmin'])->middleware(['auth'])->name('makeMeAAdmin');
 Route::get('/accessdenied', [HomeController::class, 'accessDenied'])->name('AccessDenied');
 Route::get('/admin', [AdministrationController::class, 'adminView'])->middleware(['admin'])->name('AdminView');
 

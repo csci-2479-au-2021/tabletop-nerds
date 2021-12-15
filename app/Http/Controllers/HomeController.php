@@ -13,4 +13,6 @@ class HomeController extends Controller
     public function accessDenied(){
         return view('AccessDenied');
     }
+
+    
 }
